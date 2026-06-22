@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=JetBrains+Mono:wght@500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: auto; /* lenis handles this */
+}
+
+body {
+  background-color: #0e1513;
+  color: #dde4e1;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Glass utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Outline text */
+.text-outline {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.15);
+  color: transparent;
+}
+
+/* Cursor glow */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(79, 219, 200, 0.06) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: left 0.08s ease, top 0.08s ease;
+}
+
+/* Horizontal scroll */
+.h-scroll::-webkit-scrollbar { display: none; }
+.h-scroll { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+  gap: 2rem;
+}
+
+.marquee-item {
+  flex-shrink: 0;
+  font-size: clamp(80px, 15vw, 200px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Gradient border glow on focus */
+.command-input:focus-within {
+  box-shadow: 0 0 0 2px rgba(79, 219, 200, 0.3);
+}
+
+/* Hero bg text */
+.hero-bg-text {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Preloader styles */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: #090f0e;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Reveal mask for image reveal */
+.reveal-mask {
+  mask-image: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), black 100%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), black 100%, transparent 100%);
+}
