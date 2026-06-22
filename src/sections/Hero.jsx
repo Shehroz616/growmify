@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import useAppStore from '../store/useAppStore';
+import Lightfall from '../components/Lightfall';
 
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -63,22 +64,44 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center justify-center pt-24 px-8 z-10 overflow-hidden"
     >
+      <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
+        <Lightfall
+          colors={['#4ae176', '#4fdbc8', '#84dc54']}
+          backgroundColor="#00000000"
+          speed={0.5}
+          streakCount={2}
+          streakWidth={1}
+          streakLength={1}
+          glow={0.2}
+          density={0.5}
+          twinkle={0.85}
+          zoom={3}
+          backgroundGlow={0.1}
+          opacity={1}
+          mouseInteraction
+          mouseStrength={0.5}
+          mouseRadius={1}
+          color1="#4ae176"
+          color2="#4fdbc8"
+          color3="#84dc54"
+        />
+      </div>
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
 
       {/* Background marquee text */}
       <div
         ref={bgTextRef}
-        className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex items-center opacity-[0.04] pointer-events-none overflow-hidden"
+        className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex items-center opacity-[0.2] pointer-events-none overflow-hidden"
       >
-        <div className="marquee-container w-full h-full">
+        {/* <div className="marquee-container w-full h-full">
           <div className="marquee-content font-jakarta">
             <span className="marquee-item">GROWMIFY</span>
             <span className="marquee-item">GROWMIFY</span>
             <span className="marquee-item">GROWMIFY</span>
             <span className="marquee-item">GROWMIFY</span>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="text-center max-w-5xl relative z-10">
