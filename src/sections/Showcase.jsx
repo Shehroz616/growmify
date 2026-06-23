@@ -10,77 +10,30 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SHOWCASE_PROJECTS = [
   {
-    title: 'The Contrast API',
-    label: 'Image Reveal',
-    image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800',
+    title: '505Error',
+    label: '505Error',
+    image: './505error-site.png',
     description: 'Interactive image reveal component with mouse tracking and color transitions for premium visual experiences.'
   },
   {
-    title: 'AI Vision Suite',
-    label: 'Machine Learning',
-    image: 'https://images.unsplash.com/photo-1677442d019cecf8f69e1e370ecc2057?w=800',
-    description: 'Advanced computer vision algorithms and real-time processing for intelligent image analysis.'
+    title: 'Equicadamy',
+    label: 'Equicadamy',
+    image: './equicadamy-site.png',
+    description: 'The freeguide that changes how you walk every course.'
   },
   {
-    title: 'Real-Time Dashboard',
-    label: 'Data Visualization',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
-    description: 'Live analytics dashboard with instant data synchronization and beautiful visualization components.'
+    title: 'Well Clean',
+    label: 'Well Clean',
+    image: './wellclean-site.png',
+    description: 'Well clean is a team of Saudi Architects who believe in improving life quality through excellent care of living spaces'
   },
   {
-    title: 'Mobile Performance',
-    label: 'Optimization',
-    image: 'https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=800',
-    description: 'Performance-first mobile architecture delivering lightning-fast load times and smooth interactions.'
+    title: 'Talk Right',
+    label: 'Talk Right',
+    image: './talkright-site.png',
+    description: 'The AI receptionist & AI call center for UAE clinics. Answer every call, book every patient — 24/7, in 70+ languages.'
   },
-  {
-    title: 'Cloud Infrastructure',
-    label: 'DevOps',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800',
-    description: 'Scalable cloud solutions with automated deployment pipelines and infrastructure as code.'
-  },
-  {
-    title: 'E-Commerce Platform',
-    label: 'Full Stack',
-    image: 'https://images.unsplash.com/photo-1522869635100-ce306b08a6d5?w=800',
-    description: 'Complete e-commerce solution with checkout optimization, payments, and inventory management.'
-  },
-  {
-    title: 'Social Network API',
-    label: 'Backend Architecture',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800',
-    description: 'Robust backend API supporting real-time messaging, notifications, and social features.'
-  },
-  {
-    title: 'Blockchain Integration',
-    label: 'Web3 Solutions',
-    image: 'https://images.unsplash.com/photo-1639762681033-6461502127a9?w=800',
-    description: 'Decentralized application integration with smart contracts and cryptocurrency payments.'
-  },
-  {
-    title: 'Design System',
-    label: 'UI Components',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800',
-    description: 'Comprehensive component library with 100+ customizable UI elements and design tokens.'
-  },
-  {
-    title: 'Analytics Engine',
-    label: 'Data Processing',
-    image: 'https://images.unsplash.com/photo-1551431009-381d2a1d6922?w=800',
-    description: 'Advanced data processing pipeline for real-time analytics and predictive insights.'
-  },
-  {
-    title: 'Security Framework',
-    label: 'Cybersecurity',
-    image: 'https://images.unsplash.com/photo-1555663848-b4b0a20fb0c1?w=800',
-    description: 'Enterprise-grade security implementation with encryption, authentication, and compliance.'
-  },
-  {
-    title: 'Performance Metrics',
-    label: 'Monitoring',
-    image: 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=800',
-    description: 'Real-time performance monitoring and alerting system for proactive issue detection.'
-  }
+
 ];
 
 export default function Showcase() {
@@ -135,15 +88,25 @@ export default function Showcase() {
           speed={0.5}
         />
       </div>
-      <div ref={headingRef} className="px-8 max-w-7xl mx-auto mb-16">
-        <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
-          Live Deployments
-        </h2>
-        <p className="text-text-muted text-lg mt-2 font-jakarta">
-          Explore our latest high-performance projects and innovative solutions.
-        </p>
-      </div>
-      <div style={{ height: '600px', position: 'relative' }}>
+
+      <div className='max-w-7xl mx-auto min-h-96' style={{ position: 'relative' }}>
+        <div ref={headingRef} className="px-8 max-w-2xl me-auto mb-16">
+          <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
+            Live Deployments
+          </h2>
+          <p className="text-text-muted text-lg mt-2 font-jakarta">
+            Explore our latest high-performance projects and innovative solutions.
+          </p>
+          <p className="text-text-muted text-lg mt-2 font-jakarta">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
+          </p>
+          <p className="text-text-muted text-lg mt-2 font-jakarta">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
+          </p>
+          <p className="text-text-muted text-lg mt-2 font-jakarta">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
+          </p>
+        </div>
         <CardSwap
           cardDistance={60}
           verticalDistance={70}
@@ -151,10 +114,16 @@ export default function Showcase() {
           pauseOnHover={false}
         >
           {SHOWCASE_PROJECTS.map((project, index) => (
-          <Card>
-            <h3>{project.title}</h3>
-            <img src={project.image} alt={project.title} />
-          </Card>
+            <Card className="p-5 group">
+              <h3 className='text-text-muted text-lg mt-2 font-jakarta'>{project.title}</h3>
+              <p className='leading-4 my-3 text-text-muted text-md mt-2 font-jakarta '>{project.description}</p>
+        
+                <img
+                  src={project.image}
+                  alt={project.label}
+                  className="w-full aspect-video transition-all duration-[2500ms] ease-linear group-hover:object-bottom object-top object-cover"
+                />
+            </Card>
           ))}
         </CardSwap>
       </div>
