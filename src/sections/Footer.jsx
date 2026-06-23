@@ -37,9 +37,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-center py-20 px-8 w-full max-w-7xl mx-auto relative z-10">
         {/* Big logo */}
         <div ref={logoRef} className="flex flex-col items-center mb-12">
-          <span className="font-jakarta font-black text-[clamp(48px,10vw,96px)] text-on-surface uppercase tracking-tight leading-none">
-            Growmify
-          </span>
+          <img src="src/assets/logo-growmify.png" alt="Growmify Logo" width={350} />
           <p className="font-mono text-sm text-text-muted mt-4">
             © 2026 Growmify. Devoured by Details.
           </p>

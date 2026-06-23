@@ -72,12 +72,12 @@ export default function Hero() {
           streakCount={2}
           streakWidth={1}
           streakLength={1}
-          glow={0.2}
-          density={0.5}
+          glow={0.1}
+          density={1}
           twinkle={0.85}
           zoom={3}
           backgroundGlow={0.1}
-          opacity={1}
+          opacity={0.5}
           mouseInteraction
           mouseStrength={0.5}
           mouseRadius={1}
@@ -121,7 +121,7 @@ export default function Hero() {
           <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-on-surface">
             ACCELERATING
           </span>
-          <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">
+          <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-transparent bg-clip-text bg-gradient-to-r from-primary  to-secondary">
             GROWTH
           </span>
         </h1>
@@ -154,8 +154,8 @@ export default function Hero() {
         </div>
 
         {/* Scroll hint */}
-        <div className="mt-16 flex flex-col items-center gap-2 opacity-40 animate-float">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted">
+        <div className="mt-16 flex flex-col items-center gap-2 opacity-60 animate-float">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-white">
             Scroll to explore
           </span>
           <div className="w-[1px] h-10 bg-gradient-to-b from-primary to-transparent" />

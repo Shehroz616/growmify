@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import Galaxy from '../components/Galaxy'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,6 +118,22 @@ export default function Showcase() {
 
   return (
     <section className="py-32 relative overflow-hidden">
+      <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
+        <Galaxy
+          mouseRepulsion={false}
+          mouseInteraction
+          density={0.25}
+          glowIntensity={0.1}
+          saturation={0}
+          hueShift={0}
+          twinkleIntensity={0.1}
+          rotationSpeed={0.1}
+          repulsionStrength={2}
+          autoCenterRepulsion={0}
+          starSpeed={0.25}
+          speed={0.5}
+        />
+      </div>
       <div ref={headingRef} className="px-8 max-w-7xl mx-auto mb-16">
         <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
           Live Deployments
@@ -172,35 +189,31 @@ export default function Showcase() {
               <motion.button
                 key={index}
                 onClick={() => setSelectedIndex(index)}
-                className={`w-full text-left p-5 lg:p-6 rounded-2xl transition-all duration-300 group ${
-                  selectedIndex === index
+                className={`w-full text-left p-5 lg:p-6 rounded-2xl transition-all duration-300 group ${selectedIndex === index
                     ? 'bg-primary/15 border border-primary/50 shadow-lg'
                     : 'bg-surface-container/40 border border-border-subtle hover:border-primary/30 hover:bg-surface-container/60'
-                }`}
+                  }`}
                 whileHover={{ x: 4 }}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <p
-                      className={`font-mono text-xs uppercase tracking-widest transition-colors ${
-                        selectedIndex === index ? 'text-primary' : 'text-text-muted/60 group-hover:text-text-muted'
-                      }`}
+                      className={`font-mono text-xs uppercase tracking-widest transition-colors ${selectedIndex === index ? 'text-primary' : 'text-text-muted/60 group-hover:text-text-muted'
+                        }`}
                     >
                       {project.label}
                     </p>
                     <h3
-                      className={`font-jakarta font-bold text-lg mt-2 transition-colors line-clamp-2 ${
-                        selectedIndex === index ? 'text-on-surface' : 'text-on-surface/70 group-hover:text-on-surface'
-                      }`}
+                      className={`font-jakarta font-bold text-lg mt-2 transition-colors line-clamp-2 ${selectedIndex === index ? 'text-on-surface' : 'text-on-surface/70 group-hover:text-on-surface'
+                        }`}
                     >
                       {project.title}
                     </h3>
                   </div>
                   <motion.div
                     animate={{ x: selectedIndex === index ? 4 : 0, opacity: selectedIndex === index ? 1 : 0.5 }}
-                    className={`ml-2 flex-shrink-0 transition-colors ${
-                      selectedIndex === index ? 'text-primary' : 'text-text-muted'
-                    }`}
+                    className={`ml-2 flex-shrink-0 transition-colors ${selectedIndex === index ? 'text-primary' : 'text-text-muted'
+                      }`}
                   >
                     <ChevronRight size={20} />
                   </motion.div>
@@ -234,11 +247,10 @@ export default function Showcase() {
               <motion.button
                 key={index}
                 onClick={() => setSelectedIndex(index)}
-                className={`rounded-full transition-all ${
-                  selectedIndex === index
+                className={`rounded-full transition-all ${selectedIndex === index
                     ? 'w-8 h-2 bg-primary'
                     : 'w-2 h-2 bg-border-subtle hover:bg-primary/50'
-                }`}
+                  }`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={`Go to project ${index + 1}`}

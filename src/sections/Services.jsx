@@ -62,20 +62,20 @@ export default function Services() {
   return (
     <section className="w-full py-32 px-8 relative z-10">
       <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
-        <Galaxy 
+        <Galaxy
           mouseRepulsion={false}
           mouseInteraction
-          density={0.4}
-          glowIntensity={0.3}
+          density={0.5}
+          glowIntensity={0.2}
           saturation={0}
-          hueShift={140}
-          twinkleIntensity={0.4}
+          hueShift={0}
+          twinkleIntensity={0.2}
           rotationSpeed={0.1}
           repulsionStrength={2}
           autoCenterRepulsion={0}
           starSpeed={0.5}
           speed={0.7}
-      />
+        />
       </div>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -88,7 +88,7 @@ export default function Services() {
               Expertise Stack
             </h2>
             <p className="text-text-muted text-lg max-w-md mt-4 font-jakarta">
-              Uncommon engineering for elite teams. High-fidelity systems built with precision.
+              Full-stack engineering across web and mobile. Production-grade systems built with the right tools.
             </p>
           </div>
           <div className="font-mono text-xs text-primary border border-primary/20 px-4 py-2 rounded-full bg-primary/5 shrink-0">
@@ -98,7 +98,8 @@ export default function Services() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Web Architectures — large */}
+
+          {/* MERN Stack — large hero card */}
           <BentoCard className="md:col-span-8 group relative overflow-hidden rounded-3xl bg-surface-container border border-border-subtle hover:border-primary/50 transition-all duration-500 min-h-[380px]">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="p-8 relative h-full flex flex-col justify-between">
@@ -110,23 +111,40 @@ export default function Services() {
                     </svg>
                   </div>
                   <span className="font-mono text-[10px] uppercase tracking-tighter px-2 py-1 bg-primary/10 rounded text-primary border border-primary/20">
-                    Elite Tier
+                    Full Stack
                   </span>
                 </div>
                 <h3 className="font-jakarta font-bold text-4xl text-on-surface mb-4">
-                  Web Architectures
+                  MERN Stack
                 </h3>
                 <p className="text-text-muted max-w-lg font-jakarta">
-                  Next.js performance optimization, complex state management, and high-conversion
-                  landing experiences that feel like native apps.
+                  End-to-end web applications with MongoDB, Express.js, React, and Node.js. REST & GraphQL APIs,
+                  JWT auth, real-time features via Socket.io, and production-ready CI/CD pipelines.
                 </p>
               </div>
-              <div className="flex gap-3 mt-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
-                {['Typescript', 'Tailwind', 'Motion'].map((t) => (
-                  <span key={t} className="font-mono text-xs px-4 py-2 border border-border-subtle rounded-full text-on-surface-variant">
-                    {t}
-                  </span>
-                ))}
+
+              {/* Frontend / Backend split */}
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="bg-white/5 border border-border-subtle rounded-2xl p-4">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-3">Frontend</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['React', 'Next.js', 'TypeScript', 'Tailwind', 'Redux'].map((t) => (
+                      <span key={t} className="font-mono text-xs px-3 py-1 border border-border-subtle rounded-full text-on-surface-variant">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-white/5 border border-border-subtle rounded-2xl p-4">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-text-muted mb-3">Backend</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Node.js', 'Express', 'MongoDB', 'GraphQL', 'Socket.io'].map((t) => (
+                      <span key={t} className="font-mono text-xs px-3 py-1 border border-border-subtle rounded-full text-on-surface-variant">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
             {/* Orb */}
@@ -144,85 +162,115 @@ export default function Services() {
                 </svg>
               </div>
               <h3 className="font-jakarta font-bold text-3xl text-on-surface mb-3">
-                Android Ecosystem
+                Android
               </h3>
               <p className="text-text-muted font-jakarta">
-                Seamless native performance for high-growth mobile products. Jetpack Compose and
-                Kotlin Multiplatform mastery.
+                Native Android apps with Jetpack Compose and Kotlin. MVVM architecture, Room DB,
+                Retrofit, Firebase integration, and Play Store delivery.
               </p>
-              <div className="mt-auto pt-10">
-                <div className="w-full h-1 bg-border-subtle rounded-full overflow-hidden">
-                  <div className="h-full bg-secondary rounded-full" style={{ width: '92%' }} />
-                </div>
-                <div className="flex justify-between mt-2 font-mono text-[10px] text-text-muted uppercase">
-                  <span>System Integrity</span>
-                  <span>92%</span>
-                </div>
+              <div className="mt-auto pt-6 space-y-3">
+                {[
+                  { label: 'Kotlin / Compose', value: 92 },
+                  { label: 'Retrofit / Room', value: 85 },
+                  { label: 'Firebase / KMM', value: 78 },
+                ].map(({ label, value }) => (
+                  <div key={label}>
+                    <div className="w-full h-1 bg-border-subtle rounded-full overflow-hidden">
+                      <div className="h-full bg-secondary rounded-full" style={{ width: `${value}%` }} />
+                    </div>
+                    <div className="flex justify-between mt-1 font-mono text-[10px] text-text-muted uppercase">
+                      <span>{label}</span>
+                      <span>{value}%</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </BentoCard>
 
-          {/* Lighthouse card */}
-          <BentoCard className="md:col-span-4 glass rounded-3xl p-8 flex flex-col justify-center items-center text-center">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6">
-              <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+          {/* iOS card */}
+          <BentoCard className="md:col-span-4 glass rounded-3xl p-8 flex flex-col justify-between min-h-[280px]">
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                {/* Apple-style icon */}
+                <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                </svg>
+              </div>
+              <h4 className="font-jakarta font-bold text-xl text-on-surface mb-2">iOS Development</h4>
+              <p className="text-text-muted text-sm font-jakarta">
+                SwiftUI-first apps with UIKit where precision demands it. CoreData, Combine, push notifications, and App Store publishing covered.
+              </p>
             </div>
-            <h4 className="font-jakarta font-bold text-xl text-on-surface mb-2">Lighthouse Perfect</h4>
-            <p className="text-text-muted text-sm px-4 font-jakarta">
-              Core Web Vitals are not optional. We ship 100/100 performance scores on every build.
-            </p>
-            {/* Score rings */}
-            <div className="mt-6 flex gap-3">
-              {[100, 100, 100, 98].map((score, i) => (
-                <div key={i} className="w-10 h-10 rounded-full border-2 border-secondary flex items-center justify-center">
-                  <span className="font-mono text-[9px] text-secondary font-bold">{score}</span>
-                </div>
+            <div className="flex flex-wrap gap-2 mt-6">
+              {['Swift', 'SwiftUI', 'UIKit', 'CoreData', 'Combine'].map((t) => (
+                <span key={t} className="font-mono text-[10px] px-3 py-1 border border-white/10 rounded-full text-on-surface-variant">
+                  {t}
+                </span>
               ))}
             </div>
           </BentoCard>
 
-          {/* Devouring Details sign-in */}
-          <BentoCard className="md:col-span-8 bg-background-deep rounded-3xl border border-border-subtle relative overflow-hidden p-8 flex items-center justify-center group min-h-[300px]">
-            {/* Dot grid */}
-            <div
-              className="absolute inset-0 opacity-10 pointer-events-none"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)',
-                backgroundSize: '24px 24px',
-              }}
-            />
-            <div className="relative z-10 w-full max-w-sm glass p-8 rounded-2xl">
-              <div className="flex items-center justify-between mb-8">
-                <span className="text-on-surface/50 font-mono text-xs">LOGIN.CLI</span>
-                <div className="w-5 h-5 text-primary">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
+          {/* Cross-platform card */}
+          <BentoCard className="md:col-span-4 glass rounded-3xl p-8 flex flex-col justify-between min-h-[280px]">
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18H12.01M8 21H16C17.1046 21 18 20.1046 18 19V5C18 3.89543 17.1046 3 16 3H8C6.89543 3 6 3.89543 6 5V19C6 20.1046 6.89543 21 8 21Z" />
+                </svg>
               </div>
-              <div className="space-y-4">
+              <h4 className="font-jakarta font-bold text-xl text-on-surface mb-2">Cross-platform</h4>
+              <p className="text-text-muted text-sm font-jakarta">
+                Write once, ship everywhere. React Native and Flutter for shared business logic with a native UI feel on both iOS and Android.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-6">
+              {['React Native', 'Flutter', 'Expo', 'Dart'].map((t) => (
+                <span key={t} className="font-mono text-[10px] px-3 py-1 border border-white/10 rounded-full text-on-surface-variant">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </BentoCard>
+
+     
+          {/* Databases card */}
+          <BentoCard className="md:col-span-4 group relative overflow-hidden rounded-3xl bg-surface-container-high border border-border-subtle hover:border-secondary/50 transition-all duration-500">
+            <div className="p-8 flex flex-col h-full min-h-[260px]">
+              <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center mb-6">
+                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7C4 5.34315 7.58172 4 12 4C16.4183 4 20 5.34315 20 7M4 7V17C4 18.6569 7.58172 20 12 20C16.4183 20 20 18.6569 20 17V7M4 7C4 8.65685 7.58172 10 12 10C16.4183 10 20 8.65685 20 7M20 12C20 13.6569 16.4183 15 12 15C7.58172 15 4 13.6569 4 12" />
+                </svg>
+              </div>
+              <h3 className="font-jakarta font-bold text-2xl text-on-surface mb-3">Databases</h3>
+              <p className="text-text-muted text-sm font-jakarta mb-6">
+                Relational and document stores — pick the right engine for the job.
+              </p>
+              <div className="mt-auto space-y-4">
                 <div>
-                  <label className="text-[10px] uppercase font-mono text-text-muted ml-1 block mb-1">
-                    Identity
-                  </label>
-                  <input
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-mono text-sm text-on-surface outline-none"
-                    readOnly
-                    defaultValue="yo@growmify.dev"
-                  />
+                  <p className="font-mono text-[10px] uppercase text-text-muted mb-2">NoSQL</p>
+                  <div className="flex gap-2">
+                    {['MongoDB', 'Firebase', 'Redis'].map((t) => (
+                      <span key={t} className="font-mono text-xs px-3 py-1 border border-border-subtle rounded-full text-on-surface-variant">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <button className="w-full bg-primary py-3 rounded-lg text-on-primary font-bold flex items-center justify-center gap-2 group-hover:gap-4 transition-all duration-300 font-jakarta">
-                  Initiate Growth
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
+                <div>
+                  <p className="font-mono text-[10px] uppercase text-text-muted mb-2">SQL</p>
+                  <div className="flex gap-2">
+                    {['PostgreSQL', 'MySQL'].map((t) => (
+                      <span key={t} className="font-mono text-xs px-3 py-1 border border-border-subtle rounded-full text-on-surface-variant">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </BentoCard>
+
         </div>
       </div>
     </section>

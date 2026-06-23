@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import useAppStore from '../store/useAppStore';
+import SplitText from "./SplitText";
 
 export default function Preloader() {
   const containerRef = useRef(null);
@@ -35,30 +36,23 @@ export default function Preloader() {
       '<'
     );
 
-    // Logo letters stagger in
-    tl.from(
-      textRef.current?.children,
-      {
-        y: 60,
-        opacity: 0,
-        stagger: 0.04,
-        duration: 0.6,
-        ease: 'back.out(1.5)',
-      },
-      0.1
-    );
+
 
     // Exit animation
     tl.to(containerRef.current, {
       yPercent: -100,
       duration: 1,
       ease: 'expo.inOut',
-      delay: 0.3,
+      delay: 0.5,
       onComplete: () => setLoaded(),
     });
 
     return () => tl.kill();
   }, [setLoaded]);
+
+  const handleAnimationComplete = () => {
+    console.log('All letters have animated!');
+  };
 
   return (
     <div ref={containerRef} className="preloader">
@@ -68,14 +62,22 @@ export default function Preloader() {
         className="flex overflow-hidden"
         aria-label="Growmify"
       >
-        {'GROWMIFY'.split('').map((ch, i) => (
-          <span
-            key={i}
-            className="font-jakarta font-black text-7xl md:text-9xl tracking-tighter text-on-surface inline-block"
-          >
-            {ch}
-          </span>
-        ))}
+        <SplitText
+          text="Growmify"
+          className="text-8xl font-semibold text-center"
+          delay={50}
+          duration={1.5}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 40 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.1}
+          rootMargin="-100px"
+          textAlign="center"
+          onLetterAnimationComplete={handleAnimationComplete}
+          showCallback={false}
+        />
+
       </div>
 
       {/* Progress bar */}
