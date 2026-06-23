@@ -28,7 +28,7 @@ export default function Navbar() {
       <div className="flex items-center gap-2">
         
         <span className="font-jakarta font-extrabold text-xl tracking-tighter text-on-surface">
-          <img src="src/assets/logo-growmify-white.png" alt="Growmify Logo" width={100} />
+          <img src="./logo-growmify-white.png" alt="Growmify Logo" width={100} />
         </span>
       </div>
 

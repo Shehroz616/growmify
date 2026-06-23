@@ -147,7 +147,7 @@ export default function CTA() {
             className="absolute inset-0 bg-primary/20 blur-3xl rounded-full"
           />
           <div className="w-20 h-20 rounded-full animate-spin-slow flex items-center justify-center relative z-10">
-            <img src="src/assets/icon-growmify.png" alt="Growmify Icon" />
+            <img src="./icon-growmify.png" alt="Growmify Icon" />
           </div>
         </div>
 
