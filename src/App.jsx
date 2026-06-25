@@ -9,6 +9,9 @@ import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import Services from './sections/Services';
 import Showcase from './sections/Showcase';
+import Stats from './sections/Stats';
+import HowItWorks from './sections/HowItWorks';
+import Testimonials from './sections/Testimonials';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
 
@@ -67,6 +70,9 @@ export default function App() {
           <Hero />
           <Services />
           <Showcase />
+          <Stats />
+          <HowItWorks />
+          <Testimonials />
           <CTA />
         </main>
         <Footer />
