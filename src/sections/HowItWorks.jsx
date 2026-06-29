@@ -49,7 +49,7 @@ export default function HowItWorks() {
     if (activePathRef.current) {
       const len = activePathRef.current.getTotalLength();
       setPathLength(len);
-      
+
       // Position tracer dot at start
       const startPoint = activePathRef.current.getPointAtLength(0);
       if (dotRef.current) {
@@ -201,7 +201,7 @@ export default function HowItWorks() {
               <feGaussianBlur stdDeviation="3" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
-            
+
             {/* Neon color gradient matching theme */}
             <linearGradient id="neonGradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#07a8c5" />
