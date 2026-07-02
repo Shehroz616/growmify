@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function CTA() {
   const sectionRef = useRef(null);
@@ -12,7 +13,7 @@ export default function CTA() {
   const rightHandRef = useRef(null);
   const orbRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -88,9 +89,7 @@ export default function CTA() {
       repeat: -1,
       ease: 'sine.inOut',
     });
-
-    return () => tl.kill();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section ref={sectionRef} className="py-32 px-8 relative overflow-hidden">

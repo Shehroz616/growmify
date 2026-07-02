@@ -1,17 +1,20 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import useAppStore from '../store/useAppStore';
 import Lightfall from '../components/Lightfall';
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Hero() {
   const sectionRef = useRef(null);
   const tagRef = useRef(null);
   const h1Ref = useRef(null);
-  const cmdRef = useRef(null);
   const bgTextRef = useRef(null);
   const { isLoaded, commandInput, setCommandInput } = useAppStore();
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!isLoaded) return;
 
     const tl = gsap.timeline({ delay: 0.2 });
@@ -32,16 +35,6 @@ export default function Hero() {
           ease: 'expo.out',
         },
         '-=0.3'
-      )
-      .from(
-        cmdRef.current,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-        },
-        '-=0.4'
       );
 
     // Parallax bg text on scroll
@@ -55,9 +48,7 @@ export default function Hero() {
         scrub: true,
       },
     });
-
-    return () => tl.kill();
-  }, [isLoaded]);
+  }, { dependencies: [isLoaded], scope: sectionRef });
 
   return (
     <header
@@ -126,32 +117,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Command palette input */}
-        <div
-          ref={cmdRef}
-          className="command-input max-w-2xl mx-auto glass p-1 rounded-2xl flex items-center shadow-2xl transition-all duration-300"
-        >
-          <div className="flex-1 flex items-center px-4 py-3">
-            <span className="mr-3 text-text-muted">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </span>
-            <input
-              className="bg-transparent border-none outline-none w-full font-mono text-sm text-on-surface placeholder:text-text-muted/50"
-              placeholder="npx growmify build --fast"
-              value={commandInput}
-              onChange={(e) => setCommandInput(e.target.value)}
-            />
-          </div>
-          <div className="hidden sm:flex items-center px-4 text-xs font-mono text-text-muted gap-2 border-l border-border-subtle">
-            <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/10">⌘</span>
-            <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/10">K</span>
-          </div>
-          <button className="bg-white text-black font-bold px-6 py-3 rounded-xl ml-2 hover:bg-primary hover:text-white transition-all duration-300 text-sm">
-            Quick Start
-          </button>
-        </div>
+
 
         {/* Scroll hint */}
         <div className="mt-16 flex flex-col items-center gap-2 opacity-60 animate-float">

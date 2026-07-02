@@ -1,43 +1,25 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import CardSwap, { Card } from '../components/CardSwap';
+import projectsData from '../data/projects.json';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const SHOWCASE_PROJECTS = [
-  {
-    title: '505Error',
-    label: '505Error',
-    image: './505error-site.png',
-    description: 'Interactive image reveal component with mouse tracking and color transitions for premium visual experiences.'
-  },
-  {
-    title: 'Equicadamy',
-    label: 'Equicadamy',
-    image: './equicadamy-site.png',
-    description: 'The freeguide that changes how you walk every course.'
-  },
-  {
-    title: 'Well Clean',
-    label: 'Well Clean',
-    image: './wellclean-site.png',
-    description: 'Well clean is a team of Saudi Architects who believe in improving life quality through excellent care of living spaces'
-  },
-  {
-    title: 'Talk Right',
-    label: 'Talk Right',
-    image: './talkright-site.png',
-    description: 'The AI receptionist & AI call center for UAE clinics. Answer every call, book every patient — 24/7, in 70+ languages.'
-  },
-
-];
+const SHOWCASE_PROJECTS = projectsData
+  .filter((project) => project.featured)
+  .map((project) => ({
+    ...project,
+    description: project.featuredDescription || project.description,
+  }));
 
 export default function Showcase() {
   const headingRef = useRef(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  useEffect(() => {
+  useGSAP(() => {
     gsap.fromTo(
       headingRef.current,
       {
@@ -55,17 +37,7 @@ export default function Showcase() {
         },
       }
     );
-  }, []);
-
-  const currentProject = SHOWCASE_PROJECTS[selectedIndex];
-
-  const handlePrev = () => {
-    setSelectedIndex(Math.max(0, selectedIndex - 1));
-  };
-
-  const handleNext = () => {
-    setSelectedIndex(Math.min(SHOWCASE_PROJECTS.length - 1, selectedIndex + 1));
-  };
+  }, { scope: headingRef });
 
   return (
     <section className="py-32 relative overflow-hidden">
@@ -79,11 +51,18 @@ export default function Showcase() {
             Explore our latest high-performance projects and innovative solutions.
           </p>
           <p className="text-text-muted text-base mt-4 font-jakarta leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
+            We engineer bespoke digital experiences that don't just look stunning, but perform under extreme workloads. From hardware-accelerated creative UI to custom-built AI calling systems and responsive SaaS portals, see how we translate complex requirements into live, highly-optimized production systems.
           </p>
           <p className="text-text-muted text-base mt-4 font-jakarta leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
+            Every project in our portfolio is engineered for maximum conversion, sub-second load speeds, and robust backend scalability.
           </p>
+          <Link
+            to="/showcase"
+            className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-full font-jakarta font-bold hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20 mt-8 group"
+          >
+            <span>View All Projects</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
         </div>
 
         <div className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] overflow-visible mt-12 lg:mt-0">

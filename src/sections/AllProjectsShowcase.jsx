@@ -1,108 +1,17 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ExternalLink, X, Zap, Shield, CheckCircle, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TiltedCard from '../components/TiltedCard';
 import Lightfall from '../components/Lightfall';
+import ALL_PROJECTS from '../data/projects.json';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const CATEGORIES = ['All', 'AI & Automation', 'High Performance Web', 'Creative UI', 'SaaS & Mobile Apps'];
-
-const ALL_PROJECTS = [
-  {
-    id: 'talk-right',
-    title: 'Talk Right AI',
-    client: 'UAE Medical Group',
-    category: 'AI & Automation',
-    image: './talkright-site.png',
-    description: 'Interactive AI receptionist & automated patient booking flow supporting 70+ languages.',
-    tech: ['React', 'Node.js', 'FastAPI', 'Vite', 'TailwindCSS'],
-    stats: { speed: '+340%', uptime: '99.99%', conversion: '4.8x' },
-    details: {
-      challenge: 'Clinics in UAE were losing up to 35% of booking inquiries due to offline hours or language barriers.',
-      solution: 'We engineered an AI caller/booking system that integrates with local clinic management systems, supporting multi-language speech-to-text with <100ms response latencies.',
-      results: 'Over 45,000 patient appointments booked automatically in Q1, with 0 missing calls.'
-    }
-  },
-  {
-    id: '505error',
-    title: '505Error UI',
-    client: 'Creative Labs',
-    category: 'Creative UI',
-    image: './505error-site.png',
-    description: 'Hardware-accelerated image masking reveal component with mouse tracking and color transitions.',
-    tech: ['React', 'GSAP', 'Vite', 'PostCSS', 'Framer Motion'],
-    stats: { speed: '+400%', uptime: '100%', conversion: '2.5x' },
-    details: {
-      challenge: 'Standard static landing pages had low session engagement and high bounce rates.',
-      solution: 'We built a custom hardware-accelerated image masking reveal component using canvas and SVG clipping paths that follows the cursor and adapts dynamically to screen refresh rates.',
-      results: 'Increased average visitor session time by 180% and boosted click-through rate by 34%.'
-    }
-  },
-  {
-    id: 'well-clean',
-    title: 'Well Clean',
-    client: 'Saudi Architects',
-    category: 'Creative UI',
-    image: './wellclean-site.png',
-    description: 'A premium architectural showcase for a Saudi firm focused on spatial harmony and UX flow.',
-    tech: ['Next.js', 'TailwindCSS', 'Framer Motion', 'Zustand'],
-    stats: { speed: '+280%', uptime: '99.95%', conversion: '3.1x' },
-    details: {
-      challenge: 'Architectural service inquiry forms were complicated, leading to a 60% drop-off rate.',
-      solution: 'Created a highly engaging architectural portfolio web experience featuring rich micro-animations, structured services view, and a simplified 3-step booking flow.',
-      results: 'Reduced form drop-off by 42% and generated a 2.3x increase in qualified residential project leads.'
-    }
-  },
-  {
-    id: 'equicadamy',
-    title: 'Equicadamy',
-    client: 'Equine Sports LLC',
-    category: 'SaaS & Mobile Apps',
-    image: './equicadamy-site.png',
-    description: 'Offline-capable GPS tracking and interactive 3D course guide app for competitive equestrian riders.',
-    tech: ['React Native', 'Vite', 'Three.js', 'TailwindCSS'],
-    stats: { speed: '+310%', uptime: '99.98%', conversion: '3.8x' },
-    details: {
-      challenge: 'Riders had difficulty memorizing course layouts under pressure, resulting in penalties.',
-      solution: 'Developed an interactive 3D map viewer and trajectory tracking guide that caches course data offline, rendering vector paths instantly.',
-      results: 'Used by over 8,000 riders in competitive tournaments, dropping path errors by 70%.'
-    }
-  },
-  {
-    id: 'apex-analytics',
-    title: 'Apex Dashboard',
-    client: 'Vortex FinTech',
-    category: 'SaaS & Mobile Apps',
-    image: './505error-site.png',
-    description: 'High-speed trading analytics panel with real-time WebSockets integration and low-latency rendering.',
-    tech: ['React', 'D3.js', 'WebSockets', 'TailwindCSS'],
-    stats: { speed: '+500%', uptime: '99.99%', conversion: '5.2x' },
-    details: {
-      challenge: 'Financial dashboard stuttered and lagged when rendering more than 1,000 concurrent data points.',
-      solution: 'Optimized state rendering with Zustand, virtualized lists, and built high-performance canvas canvas graphs for real-time trade ticks.',
-      results: 'Sub-millisecond chart updates, eliminating rendering lag entirely and improving user satisfaction scores.'
-    }
-  },
-  {
-    id: 'cyber-vault',
-    title: 'CyberVault',
-    client: 'Guardia Security',
-    category: 'AI & Automation',
-    image: './talkright-site.png',
-    description: 'Automated vulnerability scanning and security audit report generator utilizing machine learning models.',
-    tech: ['React', 'Python', 'FastAPI', 'TailwindCSS'],
-    stats: { speed: '+210%', uptime: '99.9%', conversion: '2.8x' },
-    details: {
-      challenge: 'Security audits took up to 3 days to complete manually and compile reports.',
-      solution: 'Automated the ingestion of scan logs and vulnerability database feeds to generate interactive compliance reports in minutes.',
-      results: 'Reduced auditor time spent per client by 85%, accelerating customer acquisition.'
-    }
-  }
-];
 
 export default function AllProjectsShowcase() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -114,7 +23,7 @@ export default function AllProjectsShowcase() {
     ? ALL_PROJECTS
     : ALL_PROJECTS.filter(project => project.category === selectedCategory);
 
-  useEffect(() => {
+  useGSAP(() => {
     // Scroll header and controls entry animation
     gsap.fromTo(
       '.header-fade',
@@ -144,11 +53,7 @@ export default function AllProjectsShowcase() {
         }
       }
     );
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, [selectedCategory]);
+  }, { dependencies: [selectedCategory], scope: containerRef });
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
