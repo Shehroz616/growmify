@@ -1,8 +1,9 @@
-import { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const PHASES_DATA = [
   {
@@ -33,8 +34,6 @@ const PHASES_DATA = [
 
 export default function HowItWorks() {
   const containerRef = useRef(null);
-  const activePathRef = useRef(null);
-  const dotRef = useRef(null);
 
   // References for cards
   const card1Ref = useRef(null);
@@ -42,133 +41,96 @@ export default function HowItWorks() {
   const card3Ref = useRef(null);
   const card4Ref = useRef(null);
 
-  const [pathLength, setPathLength] = useState(0);
+  // Setup GSAP scroll timeline for card transitions
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
 
-  // Initialize path length on mount
-  useEffect(() => {
-    if (activePathRef.current) {
-      try {
-        if (typeof activePathRef.current.getTotalLength === 'function') {
-          const len = activePathRef.current.getTotalLength();
-          setPathLength(len);
+      mm.add("(min-width:1024px)", () => {
+        const cards = [
+          card1Ref.current,
+          card2Ref.current,
+          card3Ref.current,
+          card4Ref.current,
+        ];
 
-          // Position tracer dot at start
-          const startPoint = activePathRef.current.getPointAtLength(0);
-          if (dotRef.current) {
-            dotRef.current.setAttribute('cx', startPoint.x);
-            dotRef.current.setAttribute('cy', startPoint.y);
-          }
-        }
-      } catch (err) {
-        console.warn('SVG path measurement bypassed on mobile/hidden element:', err);
-      }
-    }
-  }, []);
+        gsap.set(cards[0], {
+          opacity: 1,
+          y: 0,
+        });
 
-  // Setup GSAP scroll timeline once pathLength is known
-  useEffect(() => {
-    if (pathLength === 0) return;
+        gsap.set(cards.slice(1), {
+          opacity: 0,
+          y: 50,
+        });
 
-    const mm = gsap.matchMedia();
-
-    mm.add('(min-width: 1024px)', () => {
-      // Set initial stroke dash properties for self-drawing path
-      gsap.set(activePathRef.current, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength,
-      });
-
-      const cards = [card1Ref, card2Ref, card3Ref, card4Ref];
-
-      // Set all except the first card to invisible initially
-      gsap.set(card2Ref.current, { opacity: 0, y: 50 });
-      gsap.set(card3Ref.current, { opacity: 0, y: 50 });
-      gsap.set(card4Ref.current, { opacity: 0, y: 50 });
-      gsap.set(card1Ref.current, { opacity: 1, y: 0 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=2400', // Total scroll distance while pinned
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-        },
-      });
-
-      // 1. Draw the SVG line down the page
-      tl.to(
-        activePathRef.current,
-        {
-          strokeDashoffset: 0,
-          ease: 'none',
-        },
-        0
-      );
-
-      // 2. Animate the tracer dot along the active path
-      tl.to(
-        { val: 0 },
-        {
-          val: 1,
-          ease: 'none',
-          onUpdate: function () {
-            if (!activePathRef.current || !dotRef.current) return;
-            const progress = this.targets()[0].val;
-            const currentLength = progress * pathLength;
-            const point = activePathRef.current.getPointAtLength(currentLength);
-            dotRef.current.setAttribute('cx', point.x);
-            dotRef.current.setAttribute('cy', point.y);
+        const tl = gsap.timeline({
+          defaults: {
+            ease: "none",
           },
-        },
-        0
-      );
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=1600",
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
 
-      // 3. Chronologically transition between cards
-      const stepRatio = 1 / cards.length; // 0.25 duration for each step
+        const step = 1 / cards.length;
 
-      cards.forEach((card, index) => {
-        const startOffset = index * stepRatio;
+        cards.forEach((card, index) => {
+          if (!card) return;
 
-        // Animating entrance of the card (except the first one, which is already there)
-        if (index > 0) {
-          tl.fromTo(
-            card.current,
-            {
-              opacity: 0,
-              y: 50,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              duration: stepRatio * 0.35,
-              ease: 'power2.out',
-            },
-            startOffset
-          );
-        }
+          const start = index * step;
 
-        // Animating exit of the card (except the last one, which stays visible at the end)
-        if (index < cards.length - 1) {
-          tl.to(
-            card.current,
-            {
-              opacity: 0,
-              y: -50,
-              duration: stepRatio * 0.35,
-              ease: 'power2.in',
-            },
-            startOffset + stepRatio * 0.65
-          );
-        }
+          if (index > 0) {
+            tl.fromTo(
+              card,
+              {
+                opacity: 0,
+                y: 50,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                duration: step * 0.45,
+                ease: "power2.out",
+              },
+              start
+            );
+          }
+
+          if (index < cards.length - 1) {
+            tl.to(
+              card,
+              {
+                opacity: 0,
+                y: -50,
+                duration: step * 0.45,
+                ease: "power2.in",
+              },
+              start + step * 0.55
+            );
+          }
+        });
+
+        return () => {
+          tl.kill();
+        };
       });
-    });
 
-    return () => {
-      mm.revert();
-    };
-  }, [pathLength]);
+      return () => {
+        mm.revert();
+      };
+    },
+    {
+      scope: containerRef,
+      revertOnUpdate: true,
+    }
+  );
 
   const cardRefs = [card1Ref, card2Ref, card3Ref, card4Ref];
 
@@ -194,58 +156,8 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Center Column - Interactive SVG Drawing String Path */}
-        <div className="hidden lg:flex relative lg:w-24 h-[480px] shrink-0 items-center justify-center z-10">
-          <svg
-            viewBox="0 0 100 800"
-            preserveAspectRatio="none"
-            className="w-full h-full"
-          >
-            <defs>
-              {/* Soft outer glow */}
-              <filter id="glow-wire" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-
-              {/* Neon color gradient matching theme */}
-              <linearGradient id="neonGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#07a8c5" />
-                <stop offset="100%" stopColor="#86db5a" />
-              </linearGradient>
-            </defs>
-
-            {/* Guide Wire: dashed background curve */}
-            <path
-              d="M 50,0 C 80,180 20,380 50,560 C 80,740 20,780 50,800"
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.05)"
-              strokeWidth="3"
-              strokeDasharray="6 6"
-            />
-
-            {/* Drawing Wire: animated on scroll */}
-            <path
-              ref={activePathRef}
-              d="M 50,0 C 80,180 20,380 50,560 C 80,740 20,780 50,800"
-              fill="none"
-              stroke="url(#neonGradient)"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-
-            {/* Tracer Dot: moving neon particle */}
-            <circle
-              ref={dotRef}
-              r="8"
-              fill="#86db5a"
-              filter="url(#glow-wire)"
-            />
-          </svg>
-        </div>
-
-        {/* Right Column - Sequential Testimonial/Flow Cards */}
-        <div className="w-full lg:w-[45%] relative flex flex-col justify-center min-h-[360px] py-12 lg:py-0 z-10 shrink-0">
+        {/* Right Column - Sequential Flow Cards */}
+        <div className="w-full lg:w-[50%] relative flex flex-col justify-center min-h-[360px] py-12 lg:py-0 z-10 shrink-0">
           <div className="relative w-full flex flex-col gap-6 lg:block lg:h-[280px]">
             {PHASES_DATA.map((phase, idx) => (
               <div

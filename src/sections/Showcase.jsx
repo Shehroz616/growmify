@@ -1,9 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-import Galaxy from '../components/Galaxy'
 import CardSwap, { Card } from '../components/CardSwap';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -72,22 +69,6 @@ export default function Showcase() {
 
   return (
     <section className="py-32 relative overflow-hidden">
-      <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
-        <Galaxy
-          mouseRepulsion={false}
-          mouseInteraction
-          density={0.25}
-          glowIntensity={0.1}
-          saturation={0}
-          hueShift={0}
-          twinkleIntensity={0.1}
-          rotationSpeed={0.1}
-          repulsionStrength={2}
-          autoCenterRepulsion={0}
-          starSpeed={0.25}
-          speed={0.5}
-        />
-      </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 min-h-[500px]">
         <div ref={headingRef} className="max-w-2xl">
@@ -116,7 +97,7 @@ export default function Showcase() {
               <Card key={index} className="p-5 group">
                 <h3 className="text-text-muted text-lg mt-2 font-jakarta">{project.title}</h3>
                 <p className="leading-4 my-3 text-text-muted text-md mt-2 font-jakarta">{project.description}</p>
-          
+
                 <img
                   src={project.image}
                   alt={project.label}

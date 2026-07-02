@@ -10,44 +10,46 @@ export default function Preloader() {
   const counterRef = useRef(null);
   const setLoaded = useAppStore((s) => s.setLoaded);
 
+
   useEffect(() => {
-    const tl = gsap.timeline();
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-    // Animate progress bar
-    tl.to(progressRef.current, {
-      width: '100%',
-      duration: 2,
-      ease: 'power2.inOut',
-    });
-
-    // Counter count up
-    const obj = { val: 0 };
-    tl.to(
-      obj,
-      {
-        val: 100,
+      tl.to(progressRef.current, {
+        width: "100%",
         duration: 2,
-        ease: 'power2.inOut',
-        onUpdate: () => {
-          if (counterRef.current)
-            counterRef.current.textContent = Math.round(obj.val) + '%';
+        ease: "power2.inOut",
+      });
+
+      // Counter count up
+      const obj = { val: 0 };
+      tl.to(
+        obj,
+        {
+          val: 100,
+          duration: 2,
+          ease: 'power2.inOut',
+          onUpdate: () => {
+            if (counterRef.current)
+              counterRef.current.textContent = Math.round(obj.val) + '%';
+          },
         },
-      },
-      '<'
-    );
+        '<'
+      );
 
 
 
-    // Exit animation
-    tl.to(containerRef.current, {
-      yPercent: -100,
-      duration: 1,
-      ease: 'expo.inOut',
-      delay: 0.5,
-      onComplete: () => setLoaded(),
-    });
+      // Exit animation
+      tl.to(containerRef.current, {
+        yPercent: -100,
+        duration: 1,
+        ease: 'expo.inOut',
+        delay: 0.5,
+        onComplete: () => setLoaded(),
+      });
+    }, containerRef);
 
-    return () => tl.kill();
+    return () => ctx.revert();
   }, [setLoaded]);
 
   const handleAnimationComplete = () => {
@@ -65,17 +67,12 @@ export default function Preloader() {
         <SplitText
           text="Growmify"
           className="text-8xl font-semibold text-center"
-          delay={50}
+          delay={0.05}
           duration={1.5}
           ease="power3.out"
-          splitType="chars"
           from={{ opacity: 0, y: 40 }}
           to={{ opacity: 1, y: 0 }}
-          threshold={0.1}
-          rootMargin="-100px"
-          textAlign="center"
           onLetterAnimationComplete={handleAnimationComplete}
-          showCallback={false}
         />
 
       </div>

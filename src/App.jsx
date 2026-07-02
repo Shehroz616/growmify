@@ -49,15 +49,17 @@ export default function App() {
 
     lenis.on('scroll', ScrollTrigger.update);
 
+    let rafId;
+
     const raf = (time) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     };
-    requestAnimationFrame(raf);
 
-    gsap.ticker.lagSmoothing(0);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, [isLoaded]);
@@ -84,10 +86,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blogs" element={<AllBlogs />} />
             <Route path="/blog/:id" element={<BlogDetails />} />
-            {/* Fallbacks */}
-            <Route path="/docs" element={<Home />} />
-            <Route path="/pricing" element={<Home />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>
         <Footer />

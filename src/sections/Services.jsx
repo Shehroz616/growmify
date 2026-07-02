@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Galaxy from '../components/Galaxy'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,22 +60,6 @@ export default function Services() {
 
   return (
     <section className="w-full py-32 px-8 relative z-10">
-      <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
-        <Galaxy
-          mouseRepulsion={false}
-          mouseInteraction
-          density={0.5}
-          glowIntensity={0.2}
-          saturation={0}
-          hueShift={0}
-          twinkleIntensity={0.2}
-          rotationSpeed={0.1}
-          repulsionStrength={2}
-          autoCenterRepulsion={0}
-          starSpeed={0.5}
-          speed={0.7}
-        />
-      </div>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div
@@ -233,7 +216,7 @@ export default function Services() {
             </div>
           </BentoCard>
 
-     
+
           {/* Databases card */}
           <BentoCard className="md:col-span-4 group relative overflow-hidden rounded-3xl bg-surface-container-high border border-border-subtle hover:border-secondary/50 transition-all duration-500">
             <div className="p-8 flex flex-col h-full min-h-[260px]">
