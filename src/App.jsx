@@ -2,18 +2,17 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import useAppStore from './store/useAppStore';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
-import Hero from './sections/Hero';
-import Services from './sections/Services';
-import Showcase from './sections/Showcase';
-import Stats from './sections/Stats';
-import HowItWorks from './sections/HowItWorks';
-import Testimonials from './sections/Testimonials';
-import CTA from './sections/CTA';
 import Footer from './sections/Footer';
+import Home from './sections/Home';
+import AllProjectsShowcase from './sections/AllProjectsShowcase';
+import Contact from './sections/Contact';
+import AllBlogs from './sections/AllBlogs';
+import BlogDetails from './sections/BlogDetails';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +33,8 @@ function CursorGlow() {
 
 export default function App() {
   const isLoaded = useAppStore((s) => s.isLoaded);
+  const location = useLocation();
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -44,6 +45,7 @@ export default function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -60,6 +62,15 @@ export default function App() {
     };
   }, [isLoaded]);
 
+  // Reset scroll to top when navigation changes
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="dark bg-background min-h-screen">
       <CursorGlow />
@@ -67,13 +78,17 @@ export default function App() {
       <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s ease 0.2s' }}>
         <Navbar />
         <main>
-          <Hero />
-          <Services />
-          <Showcase />
-          <Stats />
-          <HowItWorks />
-          <Testimonials />
-          <CTA />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/showcase" element={<AllProjectsShowcase />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blogs" element={<AllBlogs />} />
+            <Route path="/blog/:id" element={<BlogDetails />} />
+            {/* Fallbacks */}
+            <Route path="/docs" element={<Home />} />
+            <Route path="/pricing" element={<Home />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
         </main>
         <Footer />
       </div>

@@ -89,43 +89,43 @@ export default function Showcase() {
         />
       </div>
 
-      <div className='max-w-7xl mx-auto min-h-96' style={{ position: 'relative' }}>
-        <div ref={headingRef} className="px-8 max-w-2xl me-auto mb-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 min-h-[500px]">
+        <div ref={headingRef} className="max-w-2xl">
           <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
             Live Deployments
           </h2>
-          <p className="text-text-muted text-lg mt-2 font-jakarta">
+          <p className="text-text-muted text-lg mt-4 font-jakarta">
             Explore our latest high-performance projects and innovative solutions.
           </p>
-          <p className="text-text-muted text-lg mt-2 font-jakarta">
+          <p className="text-text-muted text-base mt-4 font-jakarta leading-relaxed">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
           </p>
-          <p className="text-text-muted text-lg mt-2 font-jakarta">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
-          </p>
-          <p className="text-text-muted text-lg mt-2 font-jakarta">
+          <p className="text-text-muted text-base mt-4 font-jakarta leading-relaxed">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium animi tenetur assumenda rem vel suscipit? Qui recusandae laudantium quibusdam enim a, provident eius sunt quae distinctio autem? Ratione, molestias dolore!
           </p>
         </div>
-        <CardSwap
-          cardDistance={60}
-          verticalDistance={70}
-          delay={5000}
-          pauseOnHover={false}
-        >
-          {SHOWCASE_PROJECTS.map((project, index) => (
-            <Card className="p-5 group">
-              <h3 className='text-text-muted text-lg mt-2 font-jakarta'>{project.title}</h3>
-              <p className='leading-4 my-3 text-text-muted text-md mt-2 font-jakarta '>{project.description}</p>
-        
+
+        <div className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] overflow-visible mt-12 lg:mt-0">
+          <CardSwap
+            cardDistance={60}
+            verticalDistance={70}
+            delay={5000}
+            pauseOnHover={false}
+          >
+            {SHOWCASE_PROJECTS.map((project, index) => (
+              <Card key={index} className="p-5 group">
+                <h3 className="text-text-muted text-lg mt-2 font-jakarta">{project.title}</h3>
+                <p className="leading-4 my-3 text-text-muted text-md mt-2 font-jakarta">{project.description}</p>
+          
                 <img
                   src={project.image}
                   alt={project.label}
                   className="w-full aspect-video transition-all duration-[2500ms] ease-linear group-hover:object-bottom object-top object-cover"
                 />
-            </Card>
-          ))}
-        </CardSwap>
+              </Card>
+            ))}
+          </CardSwap>
+        </div>
       </div>
     </section>
   );

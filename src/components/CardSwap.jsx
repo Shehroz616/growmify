@@ -40,6 +40,7 @@ const CardSwap = ({
   onCardClick,
   skewAmount = 6,
   easing = 'elastic',
+  containerClass = '',
   children
 }) => {
   const config =
@@ -178,7 +179,7 @@ const CardSwap = ({
   return (
     <div
       ref={container}
-      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
+      className={`absolute left-1/2 top-1/2 -translate-x-[68%] -translate-y-[24%] origin-center perspective-[900px] overflow-visible transition-transform duration-300 scale-[0.55] sm:scale-[0.7] md:scale-[0.8] lg:scale-[0.9] xl:scale-100 ${containerClass}`}
       style={{ width, height }}
     >
       {rendered}
