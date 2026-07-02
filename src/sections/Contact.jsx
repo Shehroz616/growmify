@@ -111,18 +111,22 @@ export default function Contact() {
 
             {/* Email TiltedCard */}
             <TiltedCard className="p-6 cursor-pointer">
-              <div 
+              <div
                 className="flex items-start gap-4"
-                onClick={() => handleCopy('hello@growmify.com', 'email')}
+                onClick={() => handleCopy('info@growmify.com', 'email')}
               >
                 <div className="p-3 bg-primary/10 border border-primary/20 text-primary rounded-2xl">
                   <Mail className="w-6 h-6" />
                 </div>
                 <div className="flex-grow">
                   <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-1">Email us</span>
-                  <span className="font-jakarta font-extrabold text-lg text-on-surface hover:text-primary transition-colors block">
-                    hello@growmify.com
-                  </span>
+                  <a
+                    href="mailto:info@growmify.com"
+                    className="font-jakarta font-extrabold text-lg text-on-surface hover:text-primary transition-colors block"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    info@growmify.com
+                  </a>
                 </div>
                 <button className="text-text-muted hover:text-primary transition-colors mt-1">
                   {copiedEmail ? <Check className="w-4.5 h-4.5 text-secondary" /> : <Copy className="w-4.5 h-4.5" />}
@@ -132,18 +136,22 @@ export default function Contact() {
 
             {/* Call TiltedCard */}
             <TiltedCard className="p-6 cursor-pointer">
-              <div 
+              <div
                 className="flex items-start gap-4"
-                onClick={() => handleCopy('+971 4 123 4567', 'phone')}
+                onClick={() => handleCopy('+923041722220', 'phone')}
               >
                 <div className="p-3 bg-secondary/10 border border-secondary/20 text-secondary rounded-2xl">
                   <Phone className="w-6 h-6" />
                 </div>
                 <div className="flex-grow">
                   <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-1">Call us</span>
-                  <span className="font-jakarta font-extrabold text-lg text-on-surface hover:text-secondary transition-colors block">
-                    +971 4 123 4567
-                  </span>
+                  <a
+                    href="tel:+923041722220"
+                    className="font-jakarta font-extrabold text-lg text-on-surface hover:text-secondary transition-colors block"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    +92 304 1722220
+                  </a>
                 </div>
                 <button className="text-text-muted hover:text-secondary transition-colors mt-1">
                   {copiedPhone ? <Check className="w-4.5 h-4.5 text-secondary" /> : <Copy className="w-4.5 h-4.5" />}
@@ -160,14 +168,14 @@ export default function Contact() {
                 <div>
                   <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-1">Headquarters</span>
                   <span className="font-jakarta font-extrabold text-lg text-on-surface block">
-                    Dubai Silicon Oasis, UAE
+                    Gujranwala, Pakistan
                   </span>
                   <span className="font-jakarta text-sm text-text-muted mt-1 block">
-                    Branch: Riyadh, Saudi Arabia
+                    Sahi Plaza 1st Floor
                   </span>
                 </div>
               </div>
-              
+
               <div className="mt-6 pt-4 border-t border-border-subtle/50 flex items-center gap-2 text-xs font-mono text-text-muted">
                 <Clock className="w-4 h-4 text-secondary" />
                 <span>Active hours: 8:00 AM - 10:00 PM (GMT+4)</span>
@@ -192,14 +200,14 @@ export default function Contact() {
                     <div className="w-20 h-20 bg-secondary/10 border border-secondary/30 text-secondary rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(134,219,90,0.2)]">
                       <Check className="w-10 h-10" />
                     </div>
-                    
+
                     <h3 className="font-jakarta font-extrabold text-3xl text-on-surface mb-3">
                       Message Sent!
                     </h3>
                     <p className="text-text-muted text-sm font-jakarta max-w-sm leading-relaxed mb-8">
                       Thank you for reaching out. Our engineering team has received your brief and will contact you within the next 4 hours.
                     </p>
-                    
+
                     <button
                       onClick={() => setSubmitStatus('idle')}
                       className="bg-primary text-on-primary font-jakarta font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all duration-200"
@@ -225,11 +233,10 @@ export default function Contact() {
                             key={type}
                             type="button"
                             onClick={() => setProjectType(type)}
-                            className={`px-4 py-2 rounded-full font-jakarta text-xs font-semibold border transition-all duration-200 ${
-                              projectType === type
-                                ? 'bg-primary border-primary text-on-primary shadow-[0_0_15px_rgba(7,168,197,0.25)]'
-                                : 'bg-surface-container/40 border-border-subtle text-text-muted hover:text-on-surface hover:bg-surface-container-high'
-                            }`}
+                            className={`px-4 py-2 rounded-full font-jakarta text-xs font-semibold border transition-all duration-200 ${projectType === type
+                              ? 'bg-primary border-primary text-on-primary shadow-[0_0_15px_rgba(7,168,197,0.25)]'
+                              : 'bg-surface-container/40 border-border-subtle text-text-muted hover:text-on-surface hover:bg-surface-container-high'
+                              }`}
                           >
                             {type}
                           </button>
@@ -248,9 +255,8 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your name"
-                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${
-                          errors.name ? 'border-error/45 bg-error/5' : 'border-border-subtle'
-                        }`}
+                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${errors.name ? 'border-error/45 bg-error/5' : 'border-border-subtle'
+                          }`}
                       />
                       {errors.name && (
                         <span className="text-error text-xs font-jakarta mt-1 block pl-2">{errors.name}</span>
@@ -268,9 +274,8 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="you@example.com"
-                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${
-                          errors.email ? 'border-error/45 bg-error/5' : 'border-border-subtle'
-                        }`}
+                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${errors.email ? 'border-error/45 bg-error/5' : 'border-border-subtle'
+                          }`}
                       />
                       {errors.email && (
                         <span className="text-error text-xs font-jakarta mt-1 block pl-2">{errors.email}</span>
@@ -288,9 +293,8 @@ export default function Contact() {
                         onChange={handleInputChange}
                         placeholder="Tell us about your project, performance bottlenecks, or scaling challenges..."
                         rows={4}
-                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 resize-none ${
-                          errors.message ? 'border-error/45 bg-error/5' : 'border-border-subtle'
-                        }`}
+                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 resize-none ${errors.message ? 'border-error/45 bg-error/5' : 'border-border-subtle'
+                          }`}
                       />
                       {errors.message && (
                         <span className="text-error text-xs font-jakarta mt-1 block pl-2">{errors.message}</span>
