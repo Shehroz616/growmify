@@ -2,10 +2,14 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const FOOTER_LINKS = ['Philosophy', 'Changelog', 'Security', 'Terms'];
+const FOOTER_LINKS = [
+  { name: 'Privacy Policy', path: '/privacy' },
+  { name: 'Terms & Conditions', path: '/terms' }
+];
 
 export default function Footer() {
   const logoRef = useRef(null);
@@ -47,13 +51,13 @@ export default function Footer() {
         {/* Footer links */}
         <div className="flex flex-wrap justify-center gap-10">
           {FOOTER_LINKS.map((link) => (
-            <a
-              key={link}
-              href="#"
+            <Link
+              key={link.name}
+              to={link.path}
               className="text-text-muted hover:text-on-surface font-mono text-sm transition-all duration-500 hover:tracking-widest"
             >
-              {link}
-            </a>
+              {link.name}
+            </Link>
           ))}
         </div>
 

@@ -6,7 +6,7 @@ import { ArrowLeft, Clock, Calendar, Search, ArrowRight } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SpotlightCard from '../components/SpotlightCard';
-import blogsData from '../data/blogs.json';
+import useBlogStore from '../store/useBlogStore';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +16,13 @@ export default function AllBlogs() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const containerRef = useRef(null);
+
+  const blogs = useBlogStore((s) => s.blogs);
+  const fetchBlogs = useBlogStore((s) => s.fetchBlogs);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, [fetchBlogs]);
 
   useEffect(() => {
     // Scroll header and controls entry animation
@@ -27,7 +34,7 @@ export default function AllBlogs() {
   }, []);
 
   // Filter and search logic
-  const filteredPosts = blogsData.filter((post) => {
+  const filteredPosts = blogs.filter((post) => {
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -83,8 +90,8 @@ export default function AllBlogs() {
           {CATEGORIES.map((category) => {
             const isActive = selectedCategory === category;
             const count = category === 'All'
-              ? blogsData.length
-              : blogsData.filter((post) => post.category === category).length;
+              ? blogs.length
+              : blogs.filter((post) => post.category === category).length;
 
             return (
               <button

@@ -11,17 +11,11 @@ import ALL_PROJECTS from '../data/projects.json';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const CATEGORIES = ['All', 'AI & Automation', 'High Performance Web', 'Creative UI', 'SaaS & Mobile Apps'];
+
 
 export default function AllProjectsShowcase() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeProject, setActiveProject] = useState(null);
   const containerRef = useRef(null);
-
-  // Filter projects based on category selection
-  const filteredProjects = selectedCategory === 'All'
-    ? ALL_PROJECTS
-    : ALL_PROJECTS.filter(project => project.category === selectedCategory);
 
   useGSAP(() => {
     // Scroll header and controls entry animation
@@ -53,7 +47,7 @@ export default function AllProjectsShowcase() {
         }
       }
     );
-  }, { dependencies: [selectedCategory], scope: containerRef });
+  }, { dependencies: [], scope: containerRef });
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
@@ -98,29 +92,13 @@ export default function AllProjectsShowcase() {
           </div>
         </div>
 
-        {/* Category Filters */}
-        <div className="header-fade flex flex-wrap gap-3 mb-12 border-b border-border-subtle pb-6">
-          {CATEGORIES.map(category => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`relative px-5 py-2.5 rounded-full font-jakarta text-sm transition-all duration-300 ${selectedCategory === category
-                ? 'bg-primary text-on-primary font-bold shadow-[0_0_20px_rgba(7,168,197,0.3)]'
-                : 'bg-surface-container/40 text-text-muted hover:text-on-surface hover:bg-surface-container-high/60 border border-border-subtle'
-                }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
         {/* Project Grid */}
         <motion.div
           layout
           className="projects-grid-root grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {ALL_PROJECTS.map((project) => (
               <motion.div
                 key={project.id}
                 layout

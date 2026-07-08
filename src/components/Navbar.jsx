@@ -7,10 +7,10 @@ import useAppStore from '../store/useAppStore';
 
 const NAV_LINKS = [
   { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+  { name: 'Careers', path: '/careers' },
   { name: 'Showcase', path: '/showcase' },
   { name: 'Blogs', path: '/blogs' },
-  { name: 'Docs', path: '/docs' },
-  { name: 'Pricing', path: '/pricing' }
 ];
 
 export default function Navbar() {
@@ -112,11 +112,10 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`font-jakarta text-sm transition-all duration-300 ${
-                  isActive
+                className={`font-jakarta text-sm transition-all duration-300 ${isActive
                     ? 'text-primary font-bold border-b-2 border-primary pb-0.5'
                     : 'text-on-surface-variant hover:text-on-surface'
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
@@ -170,9 +169,9 @@ export default function Navbar() {
             className="fixed inset-0 z-40 md:hidden pointer-events-none"
           >
             {/* SVG Wave 1: Glowing Teal Trailing Curtain */}
-            <svg 
-              className="absolute inset-0 w-full h-full fill-primary/30 z-10" 
-              viewBox="0 0 100 100" 
+            <svg
+              className="absolute inset-0 w-full h-full fill-primary/30 z-10"
+              viewBox="0 0 100 100"
               preserveAspectRatio="none"
             >
               <motion.path
@@ -184,9 +183,9 @@ export default function Navbar() {
             </svg>
 
             {/* SVG Wave 2: Deep Dark Container Main Panel */}
-            <svg 
-              className="absolute inset-0 w-full h-full fill-surface-container z-20 shadow-2xl" 
-              viewBox="0 0 100 100" 
+            <svg
+              className="absolute inset-0 w-full h-full fill-surface-container z-20 shadow-2xl"
+              viewBox="0 0 100 100"
               preserveAspectRatio="none"
             >
               <motion.path
@@ -200,8 +199,8 @@ export default function Navbar() {
             {/* Content Container */}
             <div className="absolute inset-0 z-30 pointer-events-auto flex flex-col justify-between p-8 pt-32 h-full">
               {/* High-tech Grid Background Pattern overlay */}
-              <div 
-                className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+              <div
+                className="absolute inset-0 opacity-[0.03] pointer-events-none"
                 style={{
                   backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`,
                   backgroundSize: '30px 30px',
@@ -226,17 +225,16 @@ export default function Navbar() {
                     >
                       <Link
                         to={link.path}
-                        className={`group relative flex items-baseline gap-4 font-jakarta font-extrabold text-4xl uppercase tracking-tighter transition-all duration-300 ${
-                          isActive ? 'text-primary' : 'text-on-surface hover:text-primary'
-                        }`}
+                        className={`group relative flex items-baseline gap-4 font-jakarta font-extrabold text-4xl uppercase tracking-tighter transition-all duration-300 ${isActive ? 'text-primary' : 'text-on-surface hover:text-primary'
+                          }`}
                       >
                         {/* Numerical indicators */}
                         <span className="font-mono text-xs text-text-muted/60 tracking-normal group-hover:text-primary/70 transition-colors">
                           00{idx + 1}
                         </span>
-                        
+
                         <span>{link.name}</span>
-                        
+
                         <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 text-primary self-center" />
                       </Link>
                     </motion.div>
@@ -263,7 +261,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Menu Footer Info */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.7 } }}
                 exit={{ opacity: 0 }}

@@ -2,20 +2,42 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, Share2, CheckCircle2, ArrowRight } from 'lucide-react';
 import * as Icons from 'lucide-react';
-import blogsData from '../data/blogs.json';
+import useBlogStore from '../store/useBlogStore';
 import SpotlightCard from '../components/SpotlightCard';
 
 export default function BlogDetails() {
   const { id } = useParams();
   const [isCopied, setIsCopied] = useState(false);
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Find the current blog post
-  const post = blogsData.find((p) => p.id === parseInt(id));
+  const fetchBlogById = useBlogStore((s) => s.fetchBlogById);
+  const blogs = useBlogStore((s) => s.blogs);
+
+  // Load post when ID changes
+  useEffect(() => {
+    const loadPost = async () => {
+      setLoading(true);
+      const data = await fetchBlogById(id);
+      setPost(data);
+      setLoading(false);
+    };
+    loadPost();
+  }, [id, fetchBlogById]);
 
   // Auto-scroll to top on mount / id change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  if (loading) {
+    return (
+      <section className="min-h-screen bg-background flex flex-col items-center justify-center py-20 px-8 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mb-4"></div>
+        <p className="text-text-muted font-jakarta">Loading article details...</p>
+      </section>
+    );
+  }
 
   if (!post) {
     return (
@@ -33,8 +55,8 @@ export default function BlogDetails() {
   }
 
   // Get related/other posts (excluding the current one)
-  const relatedPosts = blogsData
-    .filter((p) => p.id !== post.id)
+  const relatedPosts = blogs
+    .filter((p) => p._id !== post._id && p.id?.toString() !== post.id?.toString())
     .slice(0, 2);
 
   // Copy share link

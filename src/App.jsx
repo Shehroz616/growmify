@@ -2,17 +2,27 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import useAppStore from './store/useAppStore';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Footer from './sections/Footer';
 import Home from './sections/Home';
+import About from './sections/About';
+import Careers from './sections/Careers';
+import Privacy from './sections/Privacy';
+import Terms from './sections/Terms';
 import AllProjectsShowcase from './sections/AllProjectsShowcase';
 import Contact from './sections/Contact';
 import AllBlogs from './sections/AllBlogs';
 import BlogDetails from './sections/BlogDetails';
+
+// Admin Imports
+import AdminLogin from './sections/AdminLogin';
+import AdminDashboard from './sections/AdminDashboard';
+import AdminBlogForm from './sections/AdminBlogForm';
+import AdminLayout from './components/AdminLayout';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,23 +83,37 @@ export default function App() {
     }
   }, [location.pathname]);
 
+  const isAdminPath = location.pathname.startsWith('/admin');
+
   return (
     <div className="dark bg-background min-h-screen">
       <CursorGlow />
       {!isLoaded && <Preloader />}
       <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s ease 0.2s' }}>
-        <Navbar />
+        {!isAdminPath && <Navbar />}
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="/showcase" element={<AllProjectsShowcase />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blogs" element={<AllBlogs />} />
             <Route path="/blog/:id" element={<BlogDetails />} />
+
+            {/* Admin Dashboard Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
+            <Route path="/admin/dashboard/new" element={<AdminLayout><AdminBlogForm /></AdminLayout>} />
+            <Route path="/admin/dashboard/edit/:id" element={<AdminLayout><AdminBlogForm /></AdminLayout>} />
+
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>
-        <Footer />
+        {!isAdminPath && <Footer />}
       </div>
     </div>
   );
