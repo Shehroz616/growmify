@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, FileText, PlusCircle, LogOut, ArrowLeft, Briefcase, Folder, Users, Mail } from 'lucide-react';
+import { LayoutDashboard, FileText, PlusCircle, LogOut, ArrowLeft, Briefcase, Folder, Users, Mail, Menu, X } from 'lucide-react';
 import useAuthStore from '../store/useAuthStore';
 
 export default function AdminLayout({ children }) {
   const { user, token, logout, verifyToken, isInitialized } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (!isInitialized) {
@@ -63,9 +64,37 @@ export default function AdminLayout({ children }) {
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/2 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/2 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Sidebar */}
-      <aside className="w-full md:w-64 bg-surface-container-low border-b md:border-r border-border-subtle p-6 flex flex-col gap-8 shrink-0 relative z-10 md:h-screen md:sticky md:top-0">
-        <div className="flex items-center justify-between">
+      {/* Mobile Top Header */}
+      <header className="w-full bg-surface-container-low border-b border-border-subtle p-4 flex items-center justify-between md:hidden relative z-25">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="font-jakarta font-extrabold text-lg tracking-tight text-on-surface">
+            Growmify<span className="text-primary font-mono text-xs ml-1 font-normal">ADMIN</span>
+          </span>
+        </Link>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 text-on-surface-variant hover:text-on-surface hover:bg-white/5 rounded-xl border border-border-subtle/50 transition-colors"
+        >
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </header>
+
+      {/* Mobile Sidebar Backdrop Overlay */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-15 md:hidden"
+        />
+      )}
+
+      {/* Sidebar Drawer */}
+      <aside
+        className={`fixed inset-y-0 left-0 md:sticky z-20 w-full max-w-[280px] md:max-w-none md:w-64 bg-surface-container-low border-r border-border-subtle p-6 flex flex-col gap-8 shrink-0 h-screen transition-transform duration-300 md:translate-x-0 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        }`}
+      >
+        {/* Desktop Logo Header */}
+        <div className="hidden md:flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <span className="font-jakarta font-extrabold text-xl tracking-tight text-on-surface">
               Growmify<span className="text-primary font-mono text-sm ml-1 font-normal">ADMIN</span>
@@ -88,6 +117,7 @@ export default function AdminLayout({ children }) {
               <Link
                 key={link.to}
                 to={link.to}
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-jakarta font-semibold transition-all duration-300 ${
                   isActive
                     ? 'bg-primary text-on-primary shadow-lg shadow-primary/10'
