@@ -1,23 +1,29 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import CardSwap, { Card } from '../components/CardSwap';
-import projectsData from '../data/projects.json';
+import useProjectStore from '../store/useProjectStore';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const SHOWCASE_PROJECTS = projectsData
-  .filter((project) => project.featured)
-  .map((project) => ({
-    ...project,
-    description: project.featuredDescription || project.description,
-  }));
-
 export default function Showcase() {
   const headingRef = useRef(null);
+  const projects = useProjectStore((s) => s.projects);
+  const fetchProjects = useProjectStore((s) => s.fetchProjects);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
+
+  const SHOWCASE_PROJECTS = projects
+    .filter((project) => project.featured)
+    .map((project) => ({
+      ...project,
+      description: project.featuredDescription || project.description,
+    }));
 
   useGSAP(() => {
     gsap.fromTo(

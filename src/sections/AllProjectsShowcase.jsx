@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -7,15 +7,20 @@ import { ArrowLeft, ExternalLink, X, Zap, Shield, CheckCircle, Cpu } from 'lucid
 import { Link } from 'react-router-dom';
 import TiltedCard from '../components/TiltedCard';
 import Lightfall from '../components/Lightfall';
-import ALL_PROJECTS from '../data/projects.json';
+import useProjectStore from '../store/useProjectStore';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-
 
 export default function AllProjectsShowcase() {
   const [activeProject, setActiveProject] = useState(null);
   const containerRef = useRef(null);
+
+  const ALL_PROJECTS = useProjectStore((s) => s.projects);
+  const fetchProjects = useProjectStore((s) => s.fetchProjects);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
 
   useGSAP(() => {
     // Scroll header and controls entry animation

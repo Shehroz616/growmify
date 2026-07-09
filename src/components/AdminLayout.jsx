@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, FileText, PlusCircle, LogOut, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, FileText, PlusCircle, LogOut, ArrowLeft, Briefcase } from 'lucide-react';
 import useAuthStore from '../store/useAuthStore';
 
 export default function AdminLayout({ children }) {
@@ -37,13 +37,13 @@ export default function AdminLayout({ children }) {
   const navLinks = [
     {
       to: '/admin/dashboard',
-      label: 'Dashboard',
-      icon: LayoutDashboard,
+      label: 'Manage Blogs',
+      icon: FileText,
     },
     {
-      to: '/admin/dashboard/new',
-      label: 'New Post',
-      icon: PlusCircle,
+      to: '/admin/dashboard/projects',
+      label: 'Manage Portfolio',
+      icon: Briefcase,
     },
   ];
 
