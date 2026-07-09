@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import fallbackProjects from '../data/projects.json';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -19,9 +18,26 @@ const useProjectStore = create((set, get) => ({
       const data = await response.json();
       set({ projects: data, loading: false, isFetched: true });
     } catch (err) {
-      console.warn('API error fetching projects, falling back to static projects.json:', err.message);
-      // Fallback to local static projects.json
-      set({ projects: fallbackProjects, error: null, loading: false, isFetched: true });
+      set({ error: err.message, loading: false });
+    }
+  },
+
+  fetchProjectById: async (id) => {
+    const localProject = get().projects.find((p) => p._id === id || p.id?.toString() === id);
+    if (localProject && get().isFetched) {
+      return localProject;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/projects/${id}`);
+      if (!response.ok) {
+        throw new Error('Project not found');
+      }
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.warn(`API error for project ${id}: `, err.message);
+      return null;
     }
   },
 

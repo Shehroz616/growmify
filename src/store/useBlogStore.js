@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import fallbackBlogs from '../data/blogs.json';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -19,9 +18,8 @@ const useBlogStore = create((set, get) => ({
       const data = await response.json();
       set({ blogs: data, loading: false, isFetched: true });
     } catch (err) {
-      console.warn('API error fetching blogs, falling back to static blogs.json:', err.message);
-      // Fallback to local static blogs.json
-      set({ blogs: fallbackBlogs, error: null, loading: false, isFetched: true });
+      console.warn('API error fetching blogs: ', err.message);
+      set({ error: err.message, loading: false });
     }
   },
 
@@ -41,10 +39,7 @@ const useBlogStore = create((set, get) => ({
       const data = await response.json();
       return data;
     } catch (err) {
-      console.warn(`API error for blog ${id}, falling back to static blogs.json search:`, err.message);
-      // Look up in fallback list
-      const staticBlog = fallbackBlogs.find((b) => b.id?.toString() === id);
-      return staticBlog || null;
+      console.warn(`API error for blog ${id}: `, err.message);
     }
   },
 

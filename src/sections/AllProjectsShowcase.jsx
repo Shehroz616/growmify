@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ExternalLink, X, Zap, Shield, CheckCircle, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TiltedCard from '../components/TiltedCard';
-import Lightfall from '../components/Lightfall';
 import useProjectStore from '../store/useProjectStore';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
