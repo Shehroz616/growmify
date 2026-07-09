@@ -49,9 +49,10 @@ export default function App() {
   const isLoaded = useAppStore((s) => s.isLoaded);
   const location = useLocation();
   const lenisRef = useRef(null);
+  const isAdminPath = location.pathname.startsWith('/admin');
 
   useEffect(() => {
-    if (!isLoaded) return;
+    if (!isLoaded || isAdminPath) return;
 
     // Init Lenis smooth scroll
     const lenis = new Lenis({
@@ -75,8 +76,9 @@ export default function App() {
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
-  }, [isLoaded]);
+  }, [isLoaded, isAdminPath]);
 
   // Reset scroll to top when navigation changes
   useEffect(() => {
@@ -86,8 +88,6 @@ export default function App() {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
-
-  const isAdminPath = location.pathname.startsWith('/admin');
 
   return (
     <div className="dark bg-background min-h-screen">
