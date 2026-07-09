@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, FileText, PlusCircle, LogOut, ArrowLeft, Briefcase, Folder, Users } from 'lucide-react';
+import { LayoutDashboard, FileText, PlusCircle, LogOut, ArrowLeft, Briefcase, Folder, Users, Mail } from 'lucide-react';
 import useAuthStore from '../store/useAuthStore';
 
 export default function AdminLayout({ children }) {
@@ -49,6 +49,11 @@ export default function AdminLayout({ children }) {
       to: '/admin/dashboard/careers',
       label: 'Manage Careers',
       icon: Briefcase,
+    },
+    {
+      to: '/admin/dashboard/inquiries',
+      label: 'Inbox / Messages',
+      icon: Mail,
     },
   ];
 

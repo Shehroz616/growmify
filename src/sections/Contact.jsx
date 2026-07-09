@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, Check, Copy, ArrowLeft, Clock } from 'lucide-react';
 import TiltedCard from '../components/TiltedCard';
+import useInquiryStore from '../store/useInquiryStore';
 
 const PROJECT_TYPES = ['AI & Automation', 'High Performance Web', 'UI Design', 'Consulting', 'Other'];
 
 export default function Contact() {
   const formRef = useRef(null);
+  const { submitInquiry } = useInquiryStore();
 
   // Form State
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -39,7 +41,7 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Simple validation
@@ -58,12 +60,19 @@ export default function Contact() {
     }
 
     setSubmitStatus('sending');
-
-    // Simulate API request
-    setTimeout(() => {
+    try {
+      await submitInquiry({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        projectType,
+        message: formData.message.trim()
+      });
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    }, 1800);
+    } catch (err) {
+      setSubmitStatus('idle');
+      alert(`Submission failed: ${err.message}`);
+    }
   };
 
   useEffect(() => {
