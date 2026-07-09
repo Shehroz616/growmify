@@ -25,6 +25,8 @@ import AdminBlogForm from './sections/AdminBlogForm';
 import AdminLayout from './components/AdminLayout';
 import AdminProjects from './sections/AdminProjects';
 import AdminProjectForm from './sections/AdminProjectForm';
+import AdminCareers from './sections/AdminCareers';
+import AdminCareerForm from './sections/AdminCareerForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,6 +118,11 @@ export default function App() {
             <Route path="/admin/dashboard/projects" element={<AdminLayout><AdminProjects /></AdminLayout>} />
             <Route path="/admin/dashboard/projects/new" element={<AdminLayout><AdminProjectForm /></AdminLayout>} />
             <Route path="/admin/dashboard/projects/edit/:id" element={<AdminLayout><AdminProjectForm /></AdminLayout>} />
+
+            {/* Admin Careers Routes */}
+            <Route path="/admin/dashboard/careers" element={<AdminLayout><AdminCareers /></AdminLayout>} />
+            <Route path="/admin/dashboard/careers/new" element={<AdminLayout><AdminCareerForm /></AdminLayout>} />
+            <Route path="/admin/dashboard/careers/edit/:id" element={<AdminLayout><AdminCareerForm /></AdminLayout>} />
 
             <Route path="*" element={<h1>404</h1>} />
           </Routes>

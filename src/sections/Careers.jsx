@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Zap, Sparkles, Laptop, BookOpen, Heart, Send, Check, Briefcase, ChevronRight } from 'lucide-react';
 import SpotlightCard from '../components/SpotlightCard';
-import Lightfall from '../components/Lightfall';
+import useCareerStore from '../store/useCareerStore';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -37,57 +37,33 @@ const PERKS = [
   }
 ];
 
-const ROLES = [
-  {
-    id: 'ui-eng',
-    title: 'Senior Full-Stack UI Engineer',
-    dept: 'Engineering',
-    type: 'Full-Time / Remote',
-    desc: 'Looking for a developer who is obsessed with interactive animations, hardware acceleration, WebGL/OGL, React, and micro-interactions.',
-    requirements: [
-      '3+ years experience with React and modern bundlers (Vite/Rolldown)',
-      'Expertise in animation libraries (GSAP, Framer Motion, CSS transitions)',
-      'Obsessive attention to UI/UX details and design specs'
-    ]
-  },
-  {
-    id: 'ai-specialist',
-    title: 'AI Automation Specialist',
-    dept: 'Automation',
-    type: 'Full-Time / Remote',
-    desc: 'Help us design self-healing pipelines, autonomous agents, and custom LLM integrations for high-throughput ecommerce operations.',
-    requirements: [
-      'Strong proficiency in Python, Node.js, and API configurations',
-      'Experience with LangChain, LlamaIndex, or agentic frameworks',
-      'Familiarity with vector databases and prompt optimization'
-    ]
-  },
-  {
-    id: 'designer',
-    title: 'Visual Brand Designer',
-    dept: 'Design',
-    type: 'Contract / Remote',
-    desc: 'Sculpt bespoke brand identities, futuristic vector designs, Figma assets, and dark-mode web experiences for our premium clients.',
-    requirements: [
-      'Stunning portfolio demonstrating UI design and typography skills',
-      'Expert level usage of Figma and Adobe Creative Suite',
-      'Ability to collaborate closely with frontend developers'
-    ]
-  }
-];
-
 export default function Careers() {
   const containerRef = useRef(null);
   const formSectionRef = useRef(null);
+
+  const ROLES = useCareerStore((s) => s.roles);
+  const fetchCareers = useCareerStore((s) => s.fetchCareers);
+
+  useEffect(() => {
+    fetchCareers();
+  }, [fetchCareers]);
 
   // Form states
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    role: 'ui-eng',
+    role: '',
     portfolio: '',
     message: ''
   });
+
+  // Select first role dynamically once fetched
+  useEffect(() => {
+    if (ROLES.length > 0 && !formData.role) {
+      setFormData((prev) => ({ ...prev, role: ROLES[0].id || ROLES[0]._id }));
+    }
+  }, [ROLES, formData.role]);
+
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState('idle'); // idle | sending | success
 

@@ -2,64 +2,64 @@ import { create } from 'zustand';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-const useProjectStore = create((set, get) => ({
-  projects: [],
+const useCareerStore = create((set, get) => ({
+  roles: [],
   loading: false,
   error: null,
   isFetched: false,
 
-  fetchProjects: async () => {
+  fetchCareers: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`${API_URL}/projects`);
+      const response = await fetch(`${API_URL}/careers`);
       if (!response.ok) {
-        throw new Error('Failed to fetch projects from API');
+        throw new Error('Failed to fetch careers from API');
       }
       const data = await response.json();
-      set({ projects: data, loading: false, isFetched: true });
+      set({ roles: data, loading: false, isFetched: true });
     } catch (err) {
       set({ error: err.message, loading: false });
     }
   },
 
-  fetchProjectById: async (id) => {
-    const localProject = get().projects.find((p) => p._id === id || p.id?.toString() === id);
-    if (localProject && get().isFetched) {
-      return localProject;
+  fetchCareerById: async (id) => {
+    const localRole = get().roles.find((r) => r._id === id || r.id?.toString() === id);
+    if (localRole && get().isFetched) {
+      return localRole;
     }
 
     try {
-      const response = await fetch(`${API_URL}/projects/${id}`);
+      const response = await fetch(`${API_URL}/careers/${id}`);
       if (!response.ok) {
-        throw new Error('Project not found');
+        throw new Error('Career position not found');
       }
       const data = await response.json();
       return data;
     } catch (err) {
-      console.warn(`API error for project ${id}: `, err.message);
+      console.warn(`API error for career ${id}:`, err.message);
       return null;
     }
   },
 
-  createProject: async (projectData, token) => {
+  createCareer: async (careerData, token) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`${API_URL}/projects`, {
+      const response = await fetch(`${API_URL}/careers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(projectData),
+        body: JSON.stringify(careerData),
       });
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to create project');
+        throw new Error(data.message || 'Failed to create career position');
       }
 
       set((state) => ({
-        projects: [data, ...state.projects],
+        roles: [data, ...state.roles],
         loading: false,
       }));
       return data;
@@ -69,25 +69,25 @@ const useProjectStore = create((set, get) => ({
     }
   },
 
-  updateProject: async (id, projectData, token) => {
+  updateCareer: async (id, careerData, token) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`${API_URL}/projects/${id}`, {
+      const response = await fetch(`${API_URL}/careers/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(projectData),
+        body: JSON.stringify(careerData),
       });
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to update project');
+        throw new Error(data.message || 'Failed to update career position');
       }
 
       set((state) => ({
-        projects: state.projects.map((p) => (p._id === id || p.id?.toString() === id ? data : p)),
+        roles: state.roles.map((r) => (r._id === id || r.id?.toString() === id ? data : r)),
         loading: false,
       }));
       return data;
@@ -97,10 +97,10 @@ const useProjectStore = create((set, get) => ({
     }
   },
 
-  deleteProject: async (id, token) => {
+  deleteCareer: async (id, token) => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch(`${API_URL}/projects/${id}`, {
+      const response = await fetch(`${API_URL}/careers/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -109,11 +109,11 @@ const useProjectStore = create((set, get) => ({
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to delete project');
+        throw new Error(data.message || 'Failed to delete career position');
       }
 
       set((state) => ({
-        projects: state.projects.filter((p) => p._id !== id && p.id?.toString() !== id),
+        roles: state.roles.filter((r) => r._id !== id && r.id?.toString() !== id),
         loading: false,
       }));
       return true;
@@ -124,4 +124,4 @@ const useProjectStore = create((set, get) => ({
   },
 }));
 
-export default useProjectStore;
+export default useCareerStore;
