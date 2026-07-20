@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { ChevronDown } from 'lucide-react';
 import useAppStore from '../store/useAppStore';
 import Lightfall from '../components/Lightfall';
 
@@ -85,14 +86,6 @@ export default function Hero() {
         ref={bgTextRef}
         className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex items-center opacity-[0.2] pointer-events-none overflow-hidden"
       >
-        {/* <div className="marquee-container w-full h-full">
-          <div className="marquee-content font-jakarta">
-            <span className="marquee-item">GROWMIFY</span>
-            <span className="marquee-item">GROWMIFY</span>
-            <span className="marquee-item">GROWMIFY</span>
-            <span className="marquee-item">GROWMIFY</span>
-          </div>
-        </div> */}
       </div>
 
       <div className="text-center max-w-5xl relative z-10">
@@ -117,14 +110,16 @@ export default function Hero() {
           </span>
         </h1>
 
-
-
         {/* Scroll hint */}
-        <div className="mt-16 flex flex-col items-center gap-2 opacity-60 animate-float">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-white">
+        <div className="mt-14 flex flex-col items-center gap-3">
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-surface/80 font-medium">
             Scroll to explore
           </span>
-          <div className="w-[1px] h-10 bg-gradient-to-b from-primary to-transparent" />
+          <div className="flex flex-col items-center gap-1.5">
+            <div className="w-9 h-9  flex items-center justify-center text-primary  animate-bounce">
+              <ChevronDown className="w-5 h-5 text-primary stroke-[2.5]" />
+            </div>
+          </div>
         </div>
       </div>
     </header>

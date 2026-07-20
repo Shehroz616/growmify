@@ -10,6 +10,7 @@ import useProjectStore from '../store/useProjectStore';
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Showcase() {
+  const containerRef = useRef(null);
   const headingRef = useRef(null);
   const projects = useProjectStore((s) => s.projects);
   const fetchProjects = useProjectStore((s) => s.fetchProjects);
@@ -28,10 +29,7 @@ export default function Showcase() {
   useGSAP(() => {
     gsap.fromTo(
       headingRef.current,
-      {
-        y: 40,
-        opacity: 0,
-      },
+      { y: 40, opacity: 0 },
       {
         y: 0,
         opacity: 1,
@@ -43,51 +41,108 @@ export default function Showcase() {
         },
       }
     );
-  }, { scope: headingRef });
+  }, { scope: containerRef });
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section ref={containerRef} className="py-24 lg:py-36 relative overflow-hidden bg-background">
+      {/* Background Arc Graphic Lines & Ambient Glow */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-primary/10 opacity-60" />
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-white/5 opacity-30" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px]" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 min-h-[500px]">
-        <div ref={headingRef} className="max-w-2xl">
-          <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
-            Live Deployments
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 min-h-[500px]">
+        {/* Left Side: Formatted Content & CTA Button */}
+        <div ref={headingRef} className="lg:col-span-6 flex flex-col justify-center max-w-xl">
+          <h2 className="font-jakarta font-extrabold text-[clamp(40px,5vw,64px)] tracking-tight leading-tight mb-4">
+            <span className="text-primary">Live</span> <span className="text-on-surface">Deployments</span>
           </h2>
-          <p className="text-text-muted text-lg mt-4 font-jakarta">
+
+          <h3 className="text-on-surface font-jakarta font-semibold text-lg sm:text-xl leading-snug mb-6 text-on-surface/90">
             Explore our latest high-performance projects and innovative solutions.
-          </p>
-          <p className="text-text-muted text-base mt-4 font-jakarta leading-relaxed">
-            We engineer bespoke digital experiences that don't just look stunning, but perform under extreme workloads. From hardware-accelerated creative UI to custom-built AI calling systems and responsive SaaS portals, see how we translate complex requirements into live, highly-optimized production systems.
-          </p>
-          <p className="text-text-muted text-base mt-4 font-jakarta leading-relaxed">
-            Every project in our portfolio is engineered for maximum conversion, sub-second load speeds, and robust backend scalability.
-          </p>
-          <Link
-            to="/showcase"
-            className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-full font-jakarta font-bold hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20 mt-8 group"
-          >
-            <span>View All Projects</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-          </Link>
+          </h3>
+
+          <div className="space-y-4 mb-8 text-text-muted text-sm sm:text-base font-jakarta leading-relaxed">
+            <p>
+              We engineer bespoke digital experiences that don't just look stunning, but perform under extreme workloads. From hardware-accelerated creative UI to custom-built AI calling systems and responsive SaaS portals, see how we translate complex requirements into live, highly optimized production systems.
+            </p>
+            <p>
+              Every project in our portfolio is engineered for maximum conversion, sub-second load speeds, and robust backend scalability.
+            </p>
+          </div>
+
+          <div>
+            <Link
+              to="/showcase"
+              className="inline-flex items-center gap-2.5 bg-primary text-on-primary font-jakarta font-bold text-sm sm:text-base px-8 py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20 group cursor-pointer"
+            >
+              <span>View All Projects</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+          </div>
         </div>
 
-        <div className="relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] overflow-visible mt-12 lg:mt-0">
+        {/* Right Side: CardSwap 3D Perspective Stacked Cards */}
+        <div className="lg:col-span-6 relative w-full h-[400px] sm:h-[460px] lg:h-[500px] flex items-center justify-center overflow-visible">
           <CardSwap
-            cardDistance={60}
-            verticalDistance={70}
-            delay={5000}
+            width={480}
+            height={320}
+            cardDistance={55}
+            verticalDistance={60}
+            delay={4500}
             pauseOnHover={false}
           >
             {SHOWCASE_PROJECTS.map((project, index) => (
-              <Card key={index} className="p-5 group">
-                <h3 className="text-text-muted text-lg mt-2 font-jakarta">{project.title}</h3>
-                <p className="leading-4 my-3 text-text-muted text-md mt-2 font-jakarta">{project.description}</p>
+              <Card
+                key={project._id || project.id || index}
+                className="p-0 border border-border-subtle bg-surface-container/95 backdrop-blur-2xl rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-12 h-full w-full">
+                  {/* Left Inner Content */}
+                  <div className="sm:col-span-6 p-6 sm:p-7 flex flex-col justify-between h-full bg-[#111816]">
+                    <div>
+                      <h4 className="font-jakarta font-extrabold text-2xl text-on-surface mb-2 tracking-tight group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h4>
+                      <p className="text-text-muted text-xs sm:text-sm font-jakarta leading-relaxed line-clamp-3">
+                        {project.description}
+                      </p>
+                    </div>
 
-                <img
-                  src={project.image}
-                  alt={project.label}
-                  className="w-full aspect-video transition-all duration-[2500ms] ease-linear group-hover:object-bottom object-top object-cover"
-                />
+                    <div className="pt-4 mt-auto">
+                      <Link
+                        to="/showcase"
+                        className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-primary group-hover:translate-x-1 transition-transform duration-300"
+                      >
+                        <span>View Project</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right Inner Image Preview */}
+                  <div className="sm:col-span-6 relative h-full overflow-hidden bg-background border-t sm:border-t-0 sm:border-l border-border-subtle">
+                    {/* Mock Browser Header Bar */}
+                    <div className="h-6 bg-surface-container-high/90 border-b border-border-subtle px-3 flex items-center gap-1.5 z-10 relative">
+                      <span className="w-2 h-2 rounded-full bg-red-500/70" />
+                      <span className="w-2 h-2 rounded-full bg-yellow-500/70" />
+                      <span className="w-2 h-2 rounded-full bg-green-500/70" />
+                      <span className="font-mono text-[8px] text-text-muted ml-2 opacity-60 truncate">
+                        {project.title.toLowerCase().replace(/\s+/g, '')}.growmify.com
+                      </span>
+                    </div>
+
+                    <div className="relative h-[calc(100%-24px)] w-full overflow-hidden">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-surface-container/40 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
               </Card>
             ))}
           </CardSwap>
