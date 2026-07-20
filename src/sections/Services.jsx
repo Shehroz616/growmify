@@ -140,74 +140,74 @@ export default function Services() {
   }, []);
 
   return (
-    <section className="w-full py-28 px-6 lg:px-12 relative z-10 overflow-hidden">
+    <section className="w-full py-20 px-6 lg:px-12 relative z-10 overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div
           ref={headingRef}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
         >
-          <div className="max-w-3xl">
-            <span className="font-mono text-xs text-primary mb-3 tracking-[0.3em] uppercase block font-semibold">
+          <div className="max-w-2xl">
+            <span className="font-mono text-xs text-primary mb-2.5 tracking-[0.3em] uppercase block font-semibold">
               OUR CAPABILITIES
             </span>
-            <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-tight">
+            <h2 className="font-jakarta font-extrabold text-[clamp(32px,4vw,48px)] tracking-tight text-on-surface leading-tight">
               Technology Expertise
             </h2>
-            <p className="text-text-muted text-base sm:text-lg max-w-2xl mt-4 font-jakarta leading-relaxed">
+            <p className="text-text-muted text-sm sm:text-base max-w-xl mt-3 font-jakarta leading-relaxed">
               We use reliable, production-ready technologies to build scalable web platforms, mobile applications, and digital products.
             </p>
           </div>
-          <div className="font-mono text-xs text-primary border border-primary/20 px-4 py-2 rounded-full bg-primary/5 shrink-0">
+          <div className="font-mono text-xs text-primary border border-primary/20 px-3.5 py-1.5 rounded-full bg-primary/5 shrink-0">
             001 / EXPERTISE STACK
           </div>
         </div>
 
-        {/* 2x2 Grid with Unified Card Design and Hover Effects */}
-        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        {/* 2x2 Grid with Unified Card Design */}
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
           {EXPERTISE_CARDS.map((card) => {
             const IconComponent = card.icon;
             return (
               <div key={card.id} className="expertise-card h-full">
-                <SpotlightCard className="p-8 sm:p-10 h-full flex flex-col justify-between">
+                <SpotlightCard className="p-6 sm:p-7 h-full flex flex-col justify-between">
                   <div>
                     {/* Top row: Icon & Tag */}
-                    <div className="flex items-center justify-between gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">
-                        <IconComponent className="w-6 h-6" />
+                    <div className="flex items-center justify-between gap-4 mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">
+                        <IconComponent className="w-5 h-5" />
                       </div>
-                      <span className="font-mono text-[11px] uppercase tracking-wider px-3 py-1 bg-surface-container-high border border-border-subtle rounded-full text-primary font-medium">
+                      <span className="font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 bg-surface-container-high border border-border-subtle rounded-full text-primary font-medium">
                         {card.badge}
                       </span>
                     </div>
 
                     {/* Title & Description */}
-                    <h3 className="font-jakarta font-bold text-2xl sm:text-3xl text-on-surface mb-3 tracking-tight">
+                    <h3 className="font-jakarta font-bold text-xl sm:text-2xl text-on-surface mb-2 tracking-tight">
                       {card.title}
                     </h3>
-                    <p className="text-text-muted text-sm sm:text-base font-jakarta leading-relaxed">
+                    <p className="text-text-muted text-xs sm:text-sm font-jakarta leading-relaxed">
                       {card.description}
                     </p>
 
                     {/* Subsections List */}
-                    <div className="space-y-6 mt-8 pt-6 border-t border-border-subtle">
+                    <div className="space-y-4 mt-6 pt-5 border-t border-border-subtle/80">
                       {card.sections.map((sec, sIdx) => (
-                        <div key={sIdx} className="space-y-2.5">
+                        <div key={sIdx} className="space-y-2">
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                            <span className="font-mono text-xs uppercase tracking-widest text-primary font-semibold">
+                            <span className="font-mono text-[11px] uppercase tracking-widest text-primary font-semibold">
                               {sec.label}
                             </span>
                           </div>
 
-                          <div className="flex flex-wrap gap-2 pt-0.5">
+                          <div className="flex flex-wrap gap-1.5 pt-0.5">
                             {sec.items.map((item, iIdx) => (
                               <span
                                 key={iIdx}
-                                className="inline-flex items-center text-xs font-jakarta font-medium px-3 py-1.5 rounded-lg bg-surface-container-high/80 border border-border-subtle text-on-surface group-hover:border-primary/30 group-hover:text-on-surface hover:border-primary hover:text-primary transition-colors duration-200"
+                                className="inline-flex items-center text-[11px] sm:text-xs font-jakarta font-medium px-2.5 py-1 rounded-md bg-surface-container-high/80 border border-border-subtle text-on-surface group-hover:border-primary/30 hover:border-primary hover:text-primary transition-colors duration-200"
                               >
                                 {item}
                               </span>

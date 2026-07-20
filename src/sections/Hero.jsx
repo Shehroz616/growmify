@@ -49,6 +49,20 @@ export default function Hero() {
         scrub: true,
       },
     });
+
+    // Scale up, fade out, and cinematic blur on scroll for headline text
+    gsap.to(h1Ref.current, {
+      scale: 1.4,
+      opacity: 0,
+      filter: 'blur(8px)',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom 35%',
+        scrub: true,
+      },
+    });
   }, { dependencies: [isLoaded], scope: sectionRef });
 
   return (
