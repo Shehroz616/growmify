@@ -44,7 +44,7 @@ export default function Showcase() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 lg:py-36 relative overflow-hidden bg-background">
+    <section ref={containerRef} className="py-24 lg:py-36 relative overflow-hidden bg-surface-container">
       {/* Background Arc Graphic Lines & Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-primary/10 opacity-60" />
@@ -100,7 +100,7 @@ export default function Showcase() {
               >
                 <div className="grid grid-cols-1 sm:grid-cols-12 h-full w-full">
                   {/* Left Inner Content */}
-                  <div className="sm:col-span-6 p-6 sm:p-7 flex flex-col justify-between h-full bg-[#111816]">
+                  <div className="sm:col-span-6 p-6 sm:p-7 flex flex-col justify-between h-full bg-surface-container">
                     <div>
                       <h4 className="font-jakarta font-extrabold text-2xl text-on-surface mb-2 tracking-tight group-hover:text-primary transition-colors">
                         {project.title}

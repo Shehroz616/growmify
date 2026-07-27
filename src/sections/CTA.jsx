@@ -92,9 +92,9 @@ export default function CTA() {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="py-32 px-8 relative overflow-hidden">
-      {/* Background teal glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+    <section ref={sectionRef} className="py-28 px-6 lg:px-12 relative overflow-hidden bg-gradient-to-b from-background via-[#063b62]/20 to-[#020b14] border-t border-white/5">
+      {/* Background oceanic glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-[#063b62]/40 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <p className="font-mono text-xs text-secondary uppercase tracking-[0.3em] mb-4">

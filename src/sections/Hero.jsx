@@ -116,10 +116,10 @@ export default function Hero() {
           ref={h1Ref}
           className="font-jakarta font-black tracking-tighter mb-10 mix-blend-plus-lighter"
         >
-          <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-on-surface">
+          <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-on-surface-variant">
             ACCELERATING
           </span>
-          <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-transparent bg-clip-text bg-gradient-to-r from-primary  to-secondary">
+          <span className="block text-[clamp(48px,9vw,110px)] leading-[0.92] text-transparent bg-clip-text bg-[linear-gradient(45deg,var(--tw-gradient-stops))] from-primary  to-secondary w-max m-auto">
             GROWTH
           </span>
         </h1>

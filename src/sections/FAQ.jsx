@@ -118,7 +118,7 @@ export default function FAQ() {
                       {item.question}
                     </h3>
                   </div>
-                  
+
                   {/* Chevron Icon with Rotation */}
                   <ChevronDown
                     className={`w-5 h-5 text-text-muted transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : 'group-hover:text-on-surface'}`}

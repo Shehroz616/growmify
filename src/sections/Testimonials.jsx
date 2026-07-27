@@ -72,7 +72,7 @@ function TestimonialCard({ review }) {
           </div>
 
           {/* Quote Text */}
-          <p className="text-on-surface-variant font-jakarta italic text-[15px] leading-relaxed mb-8">
+          <p className="text-on-surface font-jakarta italic text-[15px] leading-relaxed mb-8">
             "{review.quote}"
           </p>
         </div>
@@ -122,15 +122,15 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="py-32 px-8 relative overflow-hidden bg-background">
+    <section className="py-28 px-8 relative overflow-hidden bg-gradient-to-b from-[#0a141a] via-[#063b62]/20 to-[#0e1513] border-y border-white/5">
       {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#063b62]/35 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div ref={headingRef} className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
+            <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface-variant leading-none">
               Client Appraisals
             </h2>
             <p className="text-text-muted text-lg max-w-md mt-4 font-jakarta">

@@ -140,9 +140,9 @@ export default function Services() {
   }, []);
 
   return (
-    <section className="w-full py-20 px-6 lg:px-12 relative z-10 overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+    <section className="w-full py-24 px-6 lg:px-12 relative z-10 overflow-hidden bg-gradient-to-b from-background via-[#063b62]/15 to-background border-b border-white/5">
+      {/* Background ambient lighting with rgb(6 59 98) oceanic accent */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[600px] bg-[#063b62]/30 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -154,7 +154,7 @@ export default function Services() {
             <span className="font-mono text-xs text-primary mb-2.5 tracking-[0.3em] uppercase block font-semibold">
               OUR CAPABILITIES
             </span>
-            <h2 className="font-jakarta font-extrabold text-[clamp(32px,4vw,48px)] tracking-tight text-on-surface leading-tight">
+            <h2 className="font-jakarta font-extrabold text-[clamp(32px,4vw,48px)] tracking-tight text-on-surface-variant leading-tight">
               Technology Expertise
             </h2>
             <p className="text-text-muted text-sm sm:text-base max-w-xl mt-3 font-jakarta leading-relaxed">
@@ -207,7 +207,7 @@ export default function Services() {
                             {sec.items.map((item, iIdx) => (
                               <span
                                 key={iIdx}
-                                className="inline-flex items-center text-[11px] sm:text-xs font-jakarta font-medium px-2.5 py-1 rounded-md bg-surface-container-high/80 border border-border-subtle text-on-surface group-hover:border-primary/30 hover:border-primary hover:text-primary transition-colors duration-200"
+                                className="inline-flex items-center text-[11px] sm:text-xs font-jakarta font-medium px-2.5 py-1 rounded-md bg-background border border-border-subtle text-on-surface-variant group-hover:border-primary/30 hover:border-primary hover:text-primary transition-colors duration-200"
                               >
                                 {item}
                               </span>

@@ -28,6 +28,7 @@ import AdminProjectForm from './sections/AdminProjectForm';
 import AdminCareers from './sections/AdminCareers';
 import AdminCareerForm from './sections/AdminCareerForm';
 import AdminInquiries from './sections/AdminInquiries';
+import Intercom from '@intercom/messenger-js-sdk';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,6 +52,12 @@ export default function App() {
   const location = useLocation();
   const lenisRef = useRef(null);
   const isAdminPath = location.pathname.startsWith('/admin');
+
+  useEffect(() => {
+    Intercom({
+      app_id: 'qfat9rh3', // copy this from Intercom → Settings → Messenger → Install
+    });
+  }, []);
 
   useEffect(() => {
     if (!isLoaded || isAdminPath) return;

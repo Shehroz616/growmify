@@ -32,7 +32,7 @@ export default function Blogs() {
   // GSAP animation on scroll
   useEffect(() => {
     const heading = headingRef.current;
-    
+
     gsap.fromTo(
       heading,
       { y: 40, opacity: 0 },
@@ -56,7 +56,7 @@ export default function Blogs() {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/2 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Header */}
         <div ref={headingRef} className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
@@ -76,24 +76,22 @@ export default function Blogs() {
         <div className="flex flex-wrap items-center gap-3 mb-12">
           {CATEGORIES.map((category) => {
             const isActive = selectedCategory === category;
-            const count = category === 'All' 
-              ? blogs.length 
+            const count = category === 'All'
+              ? blogs.length
               : blogs.filter(post => post.category === category).length;
 
             return (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`font-jakarta text-sm px-5 py-2.5 rounded-full border transition-all duration-300 flex items-center gap-2 ${
-                  isActive
+                className={`font-jakarta text-sm px-5 py-2.5 rounded-full border transition-all duration-300 flex items-center gap-2 ${isActive
                     ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20 scale-105'
                     : 'bg-surface-container border-border-subtle text-on-surface-variant hover:text-on-surface hover:border-outline-variant'
-                }`}
+                  }`}
               >
                 <span>{category}</span>
-                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
-                  isActive ? 'bg-on-primary/10 text-on-primary' : 'bg-white/5 text-text-muted'
-                }`}>
+                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${isActive ? 'bg-on-primary/10 text-on-primary' : 'bg-white/5 text-text-muted'
+                  }`}>
                   {count}
                 </span>
               </button>
@@ -102,7 +100,7 @@ export default function Blogs() {
         </div>
 
         {/* Cards Grid */}
-        <motion.div 
+        <motion.div
           layout
           ref={cardsContainerRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -123,17 +121,17 @@ export default function Blogs() {
                   <Link to={`/blog/${post.id}`} className="block h-full group">
                     <SpotlightCard className="h-full flex flex-col justify-between cursor-pointer">
                       <div className="relative">
-                        
+
                         {/* Image cover */}
                         <div className="w-full aspect-[16/9] overflow-hidden bg-surface-container-low border-b border-border-subtle relative">
                           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60 z-10" />
-                          <img 
-                            src={post.image} 
+                          <img
+                            src={post.image}
                             alt={post.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             loading="lazy"
                           />
-                          
+
                           {/* Hover Overlay */}
                           <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
                             <span className="bg-background/90 text-on-surface text-xs font-mono px-4 py-2 rounded-full border border-primary/30 flex items-center gap-1.5 backdrop-blur-sm shadow-xl">

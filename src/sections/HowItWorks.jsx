@@ -135,7 +135,7 @@ export default function HowItWorks() {
   const cardRefs = [card1Ref, card2Ref, card3Ref, card4Ref];
 
   return (
-    <div ref={containerRef} className="w-full bg-background">
+    <div ref={containerRef} className="w-full bg-surface-container">
       <section
         className="relative w-full lg:min-h-screen flex flex-col lg:flex-row items-center justify-between px-8 lg:px-24 py-16 overflow-hidden max-w-7xl mx-auto"
       >
@@ -165,11 +165,11 @@ export default function HowItWorks() {
                 ref={cardRefs[idx]}
                 className="lg:absolute relative lg:inset-0 flex flex-col justify-center w-full"
               >
-                <div className="glass rounded-3xl p-8 border border-border-subtle hover:border-primary/20 transition-all duration-300">
+                <div className=" bg-background rounded-3xl p-8 border border-border-subtle hover:border-primary/20 transition-all duration-300">
                   <span className={`font-mono text-xs uppercase tracking-widest block mb-2 font-bold ${phase.colorClass}`}>
                     {phase.phase}
                   </span>
-                  <h3 className="font-jakarta font-extrabold text-2xl text-on-surface mb-3">
+                  <h3 className="font-jakarta font-extrabold text-2xl text-on-surface-variant mb-3">
                     {phase.title}
                   </h3>
                   <p className="text-text-muted text-sm font-jakarta leading-relaxed">
