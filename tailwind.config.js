@@ -11,6 +11,7 @@ export default {
         background: "#083a5d",
         "background-deep": "#020b14",
         surface: "#083a5d",
+        "surface-low": "#083a5d7e",
         "surface-container": "#fff",
         "surface-container-high": "#252b2a",
         "surface-container-highest": "#2f3634",

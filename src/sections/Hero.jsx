@@ -126,7 +126,7 @@ export default function Hero() {
 
         {/* Scroll hint */}
         <div className="mt-14 flex flex-col items-center gap-3">
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-surface/80 font-medium">
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-surface-variant font-medium">
             Scroll to explore
           </span>
           <div className="flex flex-col items-center gap-1.5">

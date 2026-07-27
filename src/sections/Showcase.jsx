@@ -75,7 +75,7 @@ export default function Showcase() {
           <div>
             <Link
               to="/showcase"
-              className="inline-flex items-center gap-2.5 bg-primary text-on-primary font-jakarta font-bold text-sm sm:text-base px-8 py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20 group cursor-pointer"
+              className="inline-flex items-center gap-2.5 bg-[linear-gradient(45deg,var(--tw-gradient-stops))] from-primary  to-secondary text-on-primary font-jakarta font-bold text-sm sm:text-base px-8 py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20 group cursor-pointer"
             >
               <span>View All Projects</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

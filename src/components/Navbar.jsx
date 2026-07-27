@@ -95,7 +95,7 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-border-subtle bg-surface-glass backdrop-blur-xl z-50 flex justify-between items-center px-6 py-3 shadow-2xl"
+        className="bg-surface-low backdrop-blur-md fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-border-subtle z-50 flex justify-between items-center px-6 py-3 shadow-2xl"
       >
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -127,7 +127,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/contact')}
-            className="hidden md:block bg-primary text-on-primary px-5 py-2 rounded-full font-bold text-sm hover:scale-105 active:scale-95 transition-all duration-200"
+            className="hidden md:block bg-[linear-gradient(45deg,var(--tw-gradient-stops))] from-primary  to-secondary text-on-primary px-5 py-2 rounded-full font-bold text-sm hover:scale-105 active:scale-95 transition-all duration-200"
           >
             Contact Us
           </button>
