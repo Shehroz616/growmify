@@ -35,7 +35,7 @@ export default function Terms() {
             <span className="terms-fade font-mono text-xs text-primary mb-3 tracking-[0.3em] uppercase block">
               AGREEMENT
             </span>
-            <h1 className="terms-fade font-jakarta font-black text-[clamp(36px,5vw,60px)] tracking-tight text-on-surface leading-none mb-4">
+            <h1 className="terms-fade font-jakarta font-black text-[clamp(36px,5vw,60px)] tracking-tight text-on-surface-variant leading-none mb-4">
               Terms & <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Conditions</span>
             </h1>
             <p className="terms-fade text-text-muted text-sm font-mono uppercase tracking-wider">
@@ -47,7 +47,7 @@ export default function Terms() {
         {/* Content body */}
         <div className="terms-fade flex flex-col gap-10 text-on-surface-variant font-jakarta leading-relaxed text-sm sm:text-base border-t border-border-subtle pt-10">
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface flex items-center gap-2">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant flex items-center gap-2">
               <Scale className="w-5 h-5 text-primary" />
               1. Acceptance of Terms
             </h2>
@@ -57,7 +57,7 @@ export default function Terms() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface flex items-center gap-2">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant flex items-center gap-2">
               <Cpu className="w-5 h-5 text-secondary" />
               2. Intellectual Property
             </h2>
@@ -67,7 +67,7 @@ export default function Terms() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface flex items-center gap-2">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant flex items-center gap-2">
               <FileText className="w-5 h-5 text-primary" />
               3. Limit of Liability & SLA Tolerances
             </h2>
@@ -77,11 +77,11 @@ export default function Terms() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant">
               4. Service Adjustments
             </h2>
             <p>
-              We reserve rights to mutate, adapt, or update rendering parameters of our web systems to comply with modern security guidelines or framework versions without prior warnings. 
+              We reserve rights to mutate, adapt, or update rendering parameters of our web systems to comply with modern security guidelines or framework versions without prior warnings.
             </p>
           </div>
         </div>

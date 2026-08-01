@@ -161,9 +161,7 @@ export default function Services() {
               We use reliable, production-ready technologies to build scalable web platforms, mobile applications, and digital products.
             </p>
           </div>
-          <div className="font-mono text-xs text-primary border border-primary/20 px-3.5 py-1.5 rounded-full bg-primary/5 shrink-0">
-            001 / EXPERTISE STACK
-          </div>
+
         </div>
 
         {/* 2x2 Grid with Unified Card Design */}

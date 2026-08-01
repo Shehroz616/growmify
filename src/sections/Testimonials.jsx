@@ -137,9 +137,7 @@ export default function Testimonials() {
               Real feedback from companies scaling and accelerating their products with us.
             </p>
           </div>
-          <div className="font-mono text-xs text-primary border border-primary/20 px-4 py-2 rounded-full bg-primary/5 shrink-0">
-            003 / PARTNERS
-          </div>
+
         </div>
 
         {/* Testimonials Grid */}

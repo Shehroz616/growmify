@@ -79,7 +79,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 relative overflow-hidden bg-background">
+    <section ref={containerRef} className="py-24 relative overflow-hidden bg-surface-container">
       {/* Background glow highlights */}
       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[350px] h-[350px] bg-primary/3 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-secondary/3 rounded-full blur-[120px] pointer-events-none" />
@@ -87,9 +87,7 @@ export default function FAQ() {
       <div className="relative max-w-4xl mx-auto px-6 z-10">
         {/* Header Block */}
         <div ref={headingRef} className="flex flex-col items-center text-center mb-16 select-none">
-          <span className="font-mono text-xs text-secondary border border-secondary/20 px-4 py-2 rounded-full bg-secondary/5 mb-6 uppercase tracking-wider">
-            005 / FAQ
-          </span>
+
           <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none mb-4">
             Frequently Asked Questions
           </h2>
@@ -105,7 +103,7 @@ export default function FAQ() {
             return (
               <div
                 key={idx}
-                className="faq-row-anim border border-border-subtle rounded-2xl bg-surface-container/20 backdrop-blur-md hover:border-primary/20 transition-all duration-300 overflow-hidden"
+                className={`faq-row-anim border  rounded-2xl bg-surface-container/20 backdrop-blur-md transition-all duration-300 overflow-hidden  ${isOpen ? 'border-primary' : 'border-secondary'}`}
               >
                 {/* Question Trigger Header */}
                 <button
@@ -113,8 +111,8 @@ export default function FAQ() {
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none group select-none"
                 >
                   <div className="flex items-center gap-4">
-                    <HelpCircle className={`w-5 h-5 shrink-0 transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-text-muted/60 group-hover:text-primary'}`} />
-                    <h3 className={`font-jakarta font-extrabold text-base lg:text-lg tracking-tight transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-on-surface group-hover:text-on-surface-variant'}`}>
+                    <HelpCircle className={`w-5 h-5 shrink-0 transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-text-muted/60'}`} />
+                    <h3 className={`font-jakarta font-extrabold text-base lg:text-lg tracking-tight transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-on-surface'}`}>
                       {item.question}
                     </h3>
                   </div>

@@ -35,7 +35,7 @@ export default function Privacy() {
             <span className="policy-fade font-mono text-xs text-primary mb-3 tracking-[0.3em] uppercase block">
               REGULATORY
             </span>
-            <h1 className="policy-fade font-jakarta font-black text-[clamp(36px,5vw,60px)] tracking-tight text-on-surface leading-none mb-4">
+            <h1 className="policy-fade font-jakarta font-black text-[clamp(36px,5vw,60px)] tracking-tight text-on-surface-variant leading-none mb-4">
               Privacy <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Policy</span>
             </h1>
             <p className="policy-fade text-text-muted text-sm font-mono uppercase tracking-wider">
@@ -47,7 +47,7 @@ export default function Privacy() {
         {/* Content body */}
         <div className="policy-fade flex flex-col gap-10 text-on-surface-variant font-jakarta leading-relaxed text-sm sm:text-base border-t border-border-subtle pt-10">
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface flex items-center gap-2">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant flex items-center gap-2">
               <Eye className="w-5 h-5 text-primary" />
               1. Information We Collect
             </h2>
@@ -62,7 +62,7 @@ export default function Privacy() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface flex items-center gap-2">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant flex items-center gap-2">
               <Shield className="w-5 h-5 text-secondary" />
               2. How We Utilize Information
             </h2>
@@ -78,7 +78,7 @@ export default function Privacy() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface flex items-center gap-2">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant flex items-center gap-2">
               <Lock className="w-5 h-5 text-primary" />
               3. Data Security & Uptime Integrity
             </h2>
@@ -88,7 +88,7 @@ export default function Privacy() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <h2 className="font-jakarta font-bold text-xl text-on-surface">
+            <h2 className="font-jakarta font-bold text-xl text-on-surface-variant">
               4. Contact & Compliance
             </h2>
             <p>

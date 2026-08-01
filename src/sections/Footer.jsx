@@ -35,17 +35,14 @@ export default function Footer() {
   }, { scope: logoRef });
 
   return (
-    <footer className="w-full border-t border-border-subtle bg-background relative overflow-hidden">
+    <footer className="w-full border-t border-border-subtle bg-surface-container relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/3 blur-[100px] pointer-events-none" />
 
       <div className="flex flex-col items-center justify-center py-20 px-8 w-full max-w-7xl mx-auto relative z-10">
         {/* Big logo */}
         <div ref={logoRef} className="flex flex-col items-center mb-12">
-          <img src="./logo-growmify-white.png" alt="Growmify Logo" width={350} />
-          <p className="font-mono text-sm text-text-muted mt-4">
-            © 2026 Growmify. Devoured by Details.
-          </p>
+          <img src="./logo-growmify.png" alt="Growmify Logo" width={350} />
         </div>
 
         {/* Footer links */}
@@ -93,7 +90,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12">
-          <p className="text-[10px] font-mono text-white/20 uppercase tracking-widest text-center">
+          <p className="text-[10px] font-mono text-on-surface tracking-widest text-center">
             Copyright © 2026 Growmify. Devoured by Details.
           </p>
         </div>

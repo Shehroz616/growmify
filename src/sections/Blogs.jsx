@@ -60,16 +60,14 @@ export default function Blogs() {
         {/* Header */}
         <div ref={headingRef} className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none">
+            <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface-variant leading-none">
               Latest Insights
             </h2>
             <p className="text-text-muted text-lg max-w-md mt-4 font-jakarta">
               Engineering breakthroughs, immersive interface design patterns, and low-latency AI implementations.
             </p>
           </div>
-          <div className="font-mono text-xs text-primary border border-primary/20 px-4 py-2 rounded-full bg-primary/5 shrink-0">
-            005 / BLOGS
-          </div>
+
         </div>
 
         {/* Category Filters */}
@@ -85,8 +83,8 @@ export default function Blogs() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`font-jakarta text-sm px-5 py-2.5 rounded-full border transition-all duration-300 flex items-center gap-2 ${isActive
-                    ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20 scale-105'
-                    : 'bg-surface-container border-border-subtle text-on-surface-variant hover:text-on-surface hover:border-outline-variant'
+                  ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20 scale-105'
+                  : 'bg-surface-container border-border-subtle text-on-surface hover:text-on-surface hover:border-outline-variant'
                   }`}
               >
                 <span>{category}</span>
@@ -143,7 +141,7 @@ export default function Blogs() {
                         {/* Content details */}
                         <div className="p-6">
                           <div className="flex items-center gap-3 mb-4">
-                            <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 border border-border-subtle rounded text-on-surface-variant flex items-center gap-1.5">
+                            <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 border border-border-subtle rounded text-on-surface flex items-center gap-1.5">
                               <IconComponent className="w-3 h-3 text-primary" />
                               {post.category}
                             </span>

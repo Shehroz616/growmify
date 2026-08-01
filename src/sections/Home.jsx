@@ -6,7 +6,6 @@ import HowItWorks from './HowItWorks';
 import Testimonials from './Testimonials';
 import FAQ from './FAQ';
 import Blogs from './Blogs';
-import CTA from './CTA';
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <Blogs />
-      <CTA />
     </>
   );
 }

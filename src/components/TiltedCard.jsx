@@ -60,7 +60,7 @@ export default function TiltedCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-3xl overflow-hidden border bg-surface-container/60 backdrop-blur-md border-border-subtle group transition-all duration-300 hover:border-primary/40 hover:shadow-[0_20px_50px_rgba(7,168,197,0.15)] ${className}`}
+      className={`relative rounded-3xl overflow-hidden border bg-surface-container backdrop-blur-md border-border-subtle group transition-all duration-300 hover:border-primary/40 hover:shadow-[0_20px_50px_rgba(7,168,197,0.15)] ${className}`}
       style={{
         ...tiltStyle,
         transformStyle: 'preserve-3d',

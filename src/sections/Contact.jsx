@@ -101,7 +101,7 @@ export default function Contact() {
           </Link>
 
           <div className="max-w-2xl">
-            <h1 className="contact-fade font-jakarta font-extrabold text-[clamp(40px,6vw,64px)] tracking-tight text-on-surface leading-none mb-4">
+            <h1 className="contact-fade font-jakarta font-extrabold text-[clamp(40px,6vw,64px)] tracking-tight text-on-surface-variant leading-none mb-4">
               Let's Build Something <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Legendary</span>
             </h1>
             <p className="contact-fade text-text-muted text-lg font-jakarta">
@@ -175,20 +175,16 @@ export default function Contact() {
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-1">Headquarters</span>
+                  <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider block mb-1">Located at</span>
                   <span className="font-jakarta font-extrabold text-lg text-on-surface block">
                     Gujranwala, Pakistan
                   </span>
                   <span className="font-jakarta text-sm text-text-muted mt-1 block">
-                    Sahi Plaza 1st Floor
+                    kings mall street, near Bilal garden, Sahi Plaza 1st Floor
                   </span>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-border-subtle/50 flex items-center gap-2 text-xs font-mono text-text-muted">
-                <Clock className="w-4 h-4 text-secondary" />
-                <span>Active hours: 8:00 AM - 10:00 PM (GMT+4)</span>
-              </div>
             </TiltedCard>
           </div>
 
@@ -244,7 +240,7 @@ export default function Contact() {
                             onClick={() => setProjectType(type)}
                             className={`px-4 py-2 rounded-full font-jakarta text-xs font-semibold border transition-all duration-200 ${projectType === type
                               ? 'bg-primary border-primary text-on-primary shadow-[0_0_15px_rgba(7,168,197,0.25)]'
-                              : 'bg-surface-container/40 border-border-subtle text-text-muted hover:text-on-surface hover:bg-surface-container-high'
+                              : 'bg-surface-container border-border-subtle text-text-muted '
                               }`}
                           >
                             {type}
@@ -264,7 +260,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your name"
-                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${errors.name ? 'border-error/45 bg-error/5' : 'border-border-subtle'
+                        className={`w-full bg-surface-container border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${errors.name ? 'border-error/45 bg-error/5' : 'border-border-subtle'
                           }`}
                       />
                       {errors.name && (
@@ -283,7 +279,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="you@example.com"
-                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${errors.email ? 'border-error/45 bg-error/5' : 'border-border-subtle'
+                        className={`w-full bg-surface-container border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 ${errors.email ? 'border-error/45 bg-error/5' : 'border-border-subtle'
                           }`}
                       />
                       {errors.email && (
@@ -302,7 +298,7 @@ export default function Contact() {
                         onChange={handleInputChange}
                         placeholder="Tell us about your project, performance bottlenecks, or scaling challenges..."
                         rows={4}
-                        className={`w-full bg-surface-container/30 border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container/50 focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 resize-none ${errors.message ? 'border-error/45 bg-error/5' : 'border-border-subtle'
+                        className={`w-full bg-surface-container border rounded-2xl px-5 py-4 text-on-surface font-jakarta placeholder:text-text-muted/40 focus:outline-none focus:border-primary/50 focus:bg-surface-container focus:shadow-[0_0_15px_rgba(7,168,197,0.1)] transition-all duration-200 resize-none ${errors.message ? 'border-error/45 bg-error/5' : 'border-border-subtle'
                           }`}
                       />
                       {errors.message && (
@@ -314,7 +310,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={submitStatus === 'sending'}
-                      className="w-full bg-secondary text-on-secondary font-jakarta font-bold text-sm py-4 rounded-2xl hover:scale-[1.01] active:scale-[0.99] disabled:opacity-75 disabled:scale-100 transition-all duration-200 shadow-[0_4px_20px_rgba(134,219,90,0.25)] flex items-center justify-center gap-2 group"
+                      className="w-full bg-[linear-gradient(45deg,var(--tw-gradient-stops))] from-primary  to-secondary text-on-primary font-jakarta font-bold text-sm py-4 rounded-2xl hover:scale-[1.01] active:scale-[0.99] disabled:opacity-75 disabled:scale-100 transition-all duration-200 shadow-[0_4px_20px_rgba(134,219,90,0.25)] flex items-center justify-center gap-2 group"
                     >
                       {submitStatus === 'sending' ? (
                         <>

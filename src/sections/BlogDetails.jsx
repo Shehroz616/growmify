@@ -76,7 +76,7 @@ export default function BlogDetails() {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/2 blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto z-10">
-        
+
         {/* Back and Share actions */}
         <div className="flex items-center justify-between mb-8">
           <Link
@@ -89,7 +89,7 @@ export default function BlogDetails() {
 
           <button
             onClick={handleCopyLink}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-border-subtle bg-surface-container/50 text-xs font-mono text-text-muted hover:text-primary hover:border-primary/30 transition-all duration-300"
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-border-subtle bg-surface-container text-xs font-mono text-text-muted hover:text-primary hover:border-primary/30 transition-all duration-300"
           >
             {isCopied ? (
               <>
@@ -122,7 +122,7 @@ export default function BlogDetails() {
 
         {/* Article Meta Header */}
         <div className="mb-8">
-          <h1 className="font-jakarta font-extrabold text-3xl md:text-5xl text-on-surface leading-tight tracking-tight mb-6">
+          <h1 className="font-jakarta font-extrabold text-3xl md:text-5xl text-on-surface-variant leading-tight tracking-tight mb-6">
             {post.title}
           </h1>
 
@@ -153,7 +153,7 @@ export default function BlogDetails() {
             }
             if (block.type === 'heading') {
               return (
-                <h3 key={idx} className="text-2xl font-bold text-on-surface pt-6 pb-2 font-jakarta">
+                <h3 key={idx} className="text-2xl font-bold text-on-surface-variant pt-6 pb-2 font-jakarta">
                   {block.text}
                 </h3>
               );
@@ -202,10 +202,10 @@ export default function BlogDetails() {
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <div className="border-t border-border-subtle/30 pt-16">
-            <h3 className="font-jakarta font-extrabold text-2xl text-on-surface mb-8">
+            <h3 className="font-jakarta font-extrabold text-2xl text-on-surface-variant mb-8">
               Related Articles
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {relatedPosts.map((relatedPost) => {
                 const RelatedIcon = Icons[relatedPost.iconName] || Icons.BookOpen;
@@ -214,7 +214,7 @@ export default function BlogDetails() {
                     <SpotlightCard className="h-full flex flex-col justify-between cursor-pointer">
                       <div className="p-6">
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="font-mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 bg-white/5 border border-border-subtle rounded text-on-surface-variant flex items-center gap-1">
+                          <span className="font-mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 bg-white/5 border border-border-subtle rounded text-on-surface flex items-center gap-1">
                             <RelatedIcon className="w-2.5 h-2.5 text-primary" />
                             {relatedPost.category}
                           </span>

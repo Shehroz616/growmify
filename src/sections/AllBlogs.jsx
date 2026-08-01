@@ -61,7 +61,7 @@ export default function AllBlogs() {
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-xl">
-              <h1 className="header-fade-blogs font-jakarta font-extrabold text-[clamp(40px,6vw,64px)] tracking-tight text-on-surface leading-none mb-4">
+              <h1 className="header-fade-blogs font-jakarta font-extrabold text-[clamp(40px,6vw,64px)] tracking-tight text-on-surface-variant leading-none mb-4">
                 Articles & <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Insights</span>
               </h1>
               <p className="header-fade-blogs text-text-muted text-lg font-jakarta">
@@ -97,16 +97,14 @@ export default function AllBlogs() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`font-jakarta text-sm px-5 py-2.5 rounded-full border transition-all duration-300 flex items-center gap-2 ${
-                  isActive
-                    ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20 scale-105'
-                    : 'bg-surface-container border-border-subtle text-on-surface-variant hover:text-on-surface hover:border-outline-variant'
-                }`}
+                className={`font-jakarta text-sm px-5 py-2.5 rounded-full border transition-all duration-300 flex items-center gap-2 ${isActive
+                  ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20 scale-105'
+                  : 'bg-surface-container border-border-subtle text-on-surface hover:text-on-surface hover:border-outline-variant'
+                  }`}
               >
                 <span>{category}</span>
-                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
-                  isActive ? 'bg-on-primary/10 text-on-primary' : 'bg-white/5 text-text-muted'
-                }`}>
+                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${isActive ? 'bg-on-primary/10 text-on-primary' : 'bg-white/5 text-text-muted'
+                  }`}>
                   {count}
                 </span>
               </button>
@@ -157,7 +155,7 @@ export default function AllBlogs() {
                         {/* Content details */}
                         <div className="p-6">
                           <div className="flex items-center gap-3 mb-4">
-                            <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 border border-border-subtle rounded text-on-surface-variant flex items-center gap-1.5">
+                            <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 bg-white/5 border border-border-subtle rounded text-on-surface flex items-center gap-1.5">
                               <IconComponent className="w-3 h-3 text-primary" />
                               {post.category}
                             </span>

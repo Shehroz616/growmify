@@ -68,7 +68,7 @@ export default function AllProjectsShowcase() {
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-xl">
-              <h1 className="header-fade font-jakarta font-extrabold text-[clamp(40px,6vw,64px)] tracking-tight text-on-surface leading-none mb-4">
+              <h1 className="header-fade font-jakarta font-extrabold text-[clamp(40px,6vw,64px)] tracking-tight text-on-surface-variant leading-none mb-4">
                 Projects <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Showcase</span>
               </h1>
               <p className="header-fade text-text-muted text-lg font-jakarta">

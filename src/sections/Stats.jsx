@@ -140,9 +140,7 @@ export default function Stats() {
               Empirical evidence of our high-speed growth strategies in production.
             </p>
           </div>
-          <div className="font-mono text-xs text-secondary border border-secondary/20 px-4 py-2 rounded-full bg-secondary/5 shrink-0">
-            002 / TRACTION
-          </div>
+
         </div>
 
         {/* Stats Grid */}

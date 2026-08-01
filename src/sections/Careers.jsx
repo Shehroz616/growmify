@@ -180,8 +180,8 @@ export default function Careers() {
               <span className="careers-fade font-mono text-xs text-primary mb-3 tracking-[0.3em] uppercase block">
                 CAREERS
               </span>
-              <h1 className="careers-fade font-jakarta font-black text-[clamp(40px,6vw,72px)] tracking-tight text-on-surface leading-none mb-6">
-                Join The <span className="bg-gradient-to-r from-primary via-secondary to-purple-500 bg-clip-text text-transparent">Velocity</span>
+              <h1 className="careers-fade font-jakarta font-black text-[clamp(40px,6vw,72px)] tracking-tight text-on-surface-variant leading-none mb-6">
+                Join The <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Velocity</span>
               </h1>
               <p className="careers-fade text-text-muted text-lg font-jakarta leading-relaxed">
                 We are searching for detail-oriented, high-performance individuals who want to redefine what is possible in design, engineering, and digital automation. Devour details with us.
@@ -205,16 +205,14 @@ export default function Careers() {
         <div className="mb-32">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div>
-              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface tracking-tight">
+              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface-variant tracking-tight">
                 Our Work Ecosystem
               </h2>
               <p className="text-text-muted text-sm mt-2 font-jakarta max-w-md">
                 We design environments that enable extreme creativity and technical mastery.
               </p>
             </div>
-            <div className="font-mono text-xs text-secondary border border-secondary/20 px-4 py-1.5 rounded-full bg-secondary/5">
-              001 / PERKS
-            </div>
+
           </div>
 
           <div className="perks-grid-root grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -243,16 +241,14 @@ export default function Careers() {
         <div className="mb-32">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
             <div>
-              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface tracking-tight">
+              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface-variant tracking-tight">
                 Open Opportunities
               </h2>
-              <p className="text-text-muted text-sm mt-2 font-jakarta max-w-md">
+              <p className="text-text-muted text-sm mt-2 text-on-surface-variant font-jakarta max-w-md">
                 Explore our vacancies and find where your passion aligns with our velocity.
               </p>
             </div>
-            <div className="font-mono text-xs text-primary border border-primary/20 px-4 py-1.5 rounded-full bg-primary/5">
-              002 / ROLES
-            </div>
+
           </div>
 
           <div className="roles-list-root flex flex-col gap-6 max-w-4xl mx-auto">
@@ -270,7 +266,7 @@ export default function Careers() {
                       {role.type}
                     </span>
                   </div>
-                  <h3 className="font-jakarta font-extrabold text-xl sm:text-2xl text-on-surface mb-3">
+                  <h3 className="font-jakarta font-extrabold text-xl sm:text-2xl text-on-surface-variant mb-3">
                     {role.title}
                   </h3>
                   <p className="text-text-muted text-xs sm:text-sm font-jakarta leading-relaxed mb-4">
@@ -301,7 +297,7 @@ export default function Careers() {
         </div>
 
         {/* Section 3: Application Form */}
-        <div ref={formSectionRef} className="max-w-xl mx-auto border border-border-subtle rounded-3xl bg-surface-container/20 p-8 md:p-12 relative overflow-hidden">
+        <div ref={formSectionRef} className="max-w-xl mx-auto border border-border-subtle rounded-3xl bg-surface-container p-8 md:p-12 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 opacity-50 pointer-events-none" />
 
           <AnimatePresence mode="wait">

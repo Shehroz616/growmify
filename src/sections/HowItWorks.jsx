@@ -145,9 +145,7 @@ export default function HowItWorks() {
 
         {/* Left Column - Section Header */}
         <div className="w-full lg:w-[40%] flex flex-col justify-start lg:justify-center py-8 lg:py-0 select-none z-10 shrink-0">
-          <span className="font-mono text-xs text-secondary border border-secondary/20 px-4 py-2 rounded-full bg-secondary/5 self-start mb-6 uppercase tracking-wider">
-            003 / METHODOLOGY
-          </span>
+
           <h2 className="font-jakarta font-extrabold text-[clamp(36px,5vw,56px)] tracking-tight text-on-surface leading-none mb-6">
             Our Blueprint For Speed
           </h2>

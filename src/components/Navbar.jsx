@@ -114,7 +114,7 @@ export default function Navbar() {
                 to={link.path}
                 className={`font-jakarta text-sm transition-all duration-300 ${isActive
                   ? 'text-primary font-bold border-b-2 border-primary pb-0.5'
-                  : 'text-on-surface-variant hover:text-on-surface'
+                  : 'text-on-surface-variant hover:text-primary'
                   }`}
               >
                 {link.name}

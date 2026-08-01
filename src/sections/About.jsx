@@ -119,7 +119,7 @@ export default function About() {
               <span className="about-fade font-mono text-xs text-primary mb-3 tracking-[0.3em] uppercase block">
                 OUR IDENTITY
               </span>
-              <h1 className="about-fade font-jakarta font-black text-[clamp(40px,6vw,72px)] tracking-tight text-on-surface leading-none mb-6">
+              <h1 className="about-fade font-jakarta font-black text-[clamp(40px,6vw,72px)] tracking-tight text-on-surface-variant leading-none mb-6">
                 Evolving Velocity In <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Digital Growth</span>
               </h1>
               <p className="about-fade text-text-muted text-lg font-jakarta leading-relaxed">
@@ -152,16 +152,14 @@ export default function About() {
         <div className="mb-32">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div>
-              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface tracking-tight">
+              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface-variant tracking-tight">
                 Our Core Pillars
               </h2>
               <p className="text-text-muted text-sm mt-2 font-jakarta max-w-md">
                 The technical standards and creative beliefs that define every pixel we compile.
               </p>
             </div>
-            <div className="font-mono text-xs text-secondary border border-secondary/20 px-4 py-1.5 rounded-full bg-secondary/5">
-              001 / PILLARS
-            </div>
+
           </div>
 
           <div className="values-grid-root grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -190,16 +188,14 @@ export default function About() {
         <div className="mb-32 timeline-root">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
             <div>
-              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface tracking-tight">
+              <h2 className="font-jakarta font-extrabold text-3xl sm:text-4xl text-on-surface-variant tracking-tight">
                 Our Journey
               </h2>
               <p className="text-text-muted text-sm mt-2 font-jakarta max-w-md">
                 How we transformed from an ambitious concept into a high-performance digital accelerator.
               </p>
             </div>
-            <div className="font-mono text-xs text-primary border border-primary/20 px-4 py-1.5 rounded-full bg-primary/5">
-              002 / TIMELINE
-            </div>
+
           </div>
 
           <div className="relative max-w-3xl mx-auto pl-8 md:pl-0">
@@ -231,7 +227,7 @@ export default function About() {
                         <span className="font-mono text-xs font-black text-secondary uppercase tracking-widest block mb-2">
                           {item.year}
                         </span>
-                        <h3 className="font-jakarta font-bold text-lg text-on-surface mb-2">
+                        <h3 className="font-jakarta font-bold text-lg text-on-surface-variant mb-2">
                           {item.title}
                         </h3>
                         <p className="text-text-muted text-xs sm:text-sm font-jakarta leading-relaxed">
@@ -250,7 +246,7 @@ export default function About() {
         </div>
 
         {/* CTA section bottom */}
-        <div className="mt-28 border border-border-subtle rounded-3xl bg-surface-container/20 p-8 md:p-12 text-center relative overflow-hidden">
+        <div className="mt-28 border border-border-subtle rounded-3xl bg-surface-container p-8 md:p-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-50 pointer-events-none" />
           <h3 className="font-jakarta font-extrabold text-2xl sm:text-3xl text-on-surface mb-4">
             Want to accelerate your brand velocity?
