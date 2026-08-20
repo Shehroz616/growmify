@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, lazy, Suspense } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -8,27 +8,29 @@ import useAppStore from './store/useAppStore';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Footer from './sections/Footer';
-import Home from './sections/Home';
-import About from './sections/About';
-import Careers from './sections/Careers';
-import Privacy from './sections/Privacy';
-import Terms from './sections/Terms';
-import AllProjectsShowcase from './sections/AllProjectsShowcase';
-import Contact from './sections/Contact';
-import AllBlogs from './sections/AllBlogs';
-import BlogDetails from './sections/BlogDetails';
+import { Intercom } from "@intercom/messenger-js-sdk";
 
-// Admin Imports
-import AdminLogin from './sections/AdminLogin';
-import AdminDashboard from './sections/AdminDashboard';
-import AdminBlogForm from './sections/AdminBlogForm';
-import AdminLayout from './components/AdminLayout';
-import AdminProjects from './sections/AdminProjects';
-import AdminProjectForm from './sections/AdminProjectForm';
-import AdminCareers from './sections/AdminCareers';
-import AdminCareerForm from './sections/AdminCareerForm';
-import AdminInquiries from './sections/AdminInquiries';
-import { Intercom } from "@intercom/messenger-js-sdk"
+// Lazy load page sections for performance/code-splitting
+const Home = lazy(() => import('./sections/Home'));
+const About = lazy(() => import('./sections/About'));
+const Careers = lazy(() => import('./sections/Careers'));
+const Privacy = lazy(() => import('./sections/Privacy'));
+const Terms = lazy(() => import('./sections/Terms'));
+const AllProjectsShowcase = lazy(() => import('./sections/AllProjectsShowcase'));
+const Contact = lazy(() => import('./sections/Contact'));
+const AllBlogs = lazy(() => import('./sections/AllBlogs'));
+const BlogDetails = lazy(() => import('./sections/BlogDetails'));
+
+// Lazy load admin dashboard components
+const AdminLogin = lazy(() => import('./sections/AdminLogin'));
+const AdminDashboard = lazy(() => import('./sections/AdminDashboard'));
+const AdminBlogForm = lazy(() => import('./sections/AdminBlogForm'));
+const AdminLayout = lazy(() => import('./components/AdminLayout'));
+const AdminProjects = lazy(() => import('./sections/AdminProjects'));
+const AdminProjectForm = lazy(() => import('./sections/AdminProjectForm'));
+const AdminCareers = lazy(() => import('./sections/AdminCareers'));
+const AdminCareerForm = lazy(() => import('./sections/AdminCareerForm'));
+const AdminInquiries = lazy(() => import('./sections/AdminInquiries'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -104,39 +106,46 @@ export default function App() {
       <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s ease 0.2s' }}>
         {!isAdminPath && <Navbar />}
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/showcase" element={<AllProjectsShowcase />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blogs" element={<AllBlogs />} />
-            <Route path="/blog/:id" element={<BlogDetails />} />
+          <Suspense fallback={
+            <div className="min-h-[60vh] bg-background flex flex-col items-center justify-center text-center">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary mb-4"></div>
+              <p className="text-text-muted font-jakarta text-xs uppercase tracking-widest">Loading Page...</p>
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/showcase" element={<AllProjectsShowcase />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/blogs" element={<AllBlogs />} />
+              <Route path="/blog/:id" element={<BlogDetails />} />
 
-            {/* Admin Dashboard Routes */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-            <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
-            <Route path="/admin/dashboard/new" element={<AdminLayout><AdminBlogForm /></AdminLayout>} />
-            <Route path="/admin/dashboard/edit/:id" element={<AdminLayout><AdminBlogForm /></AdminLayout>} />
+              {/* Admin Dashboard Routes */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
+              <Route path="/admin/dashboard/new" element={<AdminLayout><AdminBlogForm /></AdminLayout>} />
+              <Route path="/admin/dashboard/edit/:id" element={<AdminLayout><AdminBlogForm /></AdminLayout>} />
 
-            {/* Admin Portfolio Routes */}
-            <Route path="/admin/dashboard/projects" element={<AdminLayout><AdminProjects /></AdminLayout>} />
-            <Route path="/admin/dashboard/projects/new" element={<AdminLayout><AdminProjectForm /></AdminLayout>} />
-            <Route path="/admin/dashboard/projects/edit/:id" element={<AdminLayout><AdminProjectForm /></AdminLayout>} />
+              {/* Admin Portfolio Routes */}
+              <Route path="/admin/dashboard/projects" element={<AdminLayout><AdminProjects /></AdminLayout>} />
+              <Route path="/admin/dashboard/projects/new" element={<AdminLayout><AdminProjectForm /></AdminLayout>} />
+              <Route path="/admin/dashboard/projects/edit/:id" element={<AdminLayout><AdminProjectForm /></AdminLayout>} />
 
-            {/* Admin Careers Routes */}
-            <Route path="/admin/dashboard/careers" element={<AdminLayout><AdminCareers /></AdminLayout>} />
-            <Route path="/admin/dashboard/careers/new" element={<AdminLayout><AdminCareerForm /></AdminLayout>} />
-            <Route path="/admin/dashboard/careers/edit/:id" element={<AdminLayout><AdminCareerForm /></AdminLayout>} />
+              {/* Admin Careers Routes */}
+              <Route path="/admin/dashboard/careers" element={<AdminLayout><AdminCareers /></AdminLayout>} />
+              <Route path="/admin/dashboard/careers/new" element={<AdminLayout><AdminCareerForm /></AdminLayout>} />
+              <Route path="/admin/dashboard/careers/edit/:id" element={<AdminLayout><AdminCareerForm /></AdminLayout>} />
 
-            {/* Admin Inquiries Route */}
-            <Route path="/admin/dashboard/inquiries" element={<AdminLayout><AdminInquiries /></AdminLayout>} />
+              {/* Admin Inquiries Route */}
+              <Route path="/admin/dashboard/inquiries" element={<AdminLayout><AdminInquiries /></AdminLayout>} />
 
-            <Route path="*" element={<h1>404</h1>} />
-          </Routes>
+              <Route path="*" element={<h1>404</h1>} />
+            </Routes>
+          </Suspense>
         </main>
         {!isAdminPath && <Footer />}
       </div>

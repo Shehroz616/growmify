@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Scale, Cpu, FileText } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Terms() {
   const containerRef = useRef(null);
@@ -16,6 +17,12 @@ export default function Terms() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="Terms & Conditions"
+        description="Read Growmify's Terms and Conditions to understand the rules and guidelines for using our website, services, and software platforms."
+        keywords="terms and conditions, growmify terms, user agreement"
+        canonical="https://growmify.com/terms"
+      />
       {/* Background glow highlights */}
       <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[350px] h-[350px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[350px] h-[350px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />

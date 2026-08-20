@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Zap, Sparkles, Laptop, BookOpen, Heart, Send, Check, Briefcase, ChevronRight } from 'lucide-react';
 import SpotlightCard from '../components/SpotlightCard';
 import useCareerStore from '../store/useCareerStore';
+import SEO from '../components/SEO';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -160,6 +161,12 @@ export default function Careers() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="Careers - Join the Engineering & Design Team"
+        description="Explore career opportunities at Growmify. Work with cutting-edge technologies like React, custom AI engines, and immersive interfaces to shape the future of tech."
+        keywords="growmify careers, developer jobs, react engineer jobs, remote tech jobs, UI engineer careers"
+        canonical="https://growmify.com/careers"
+      />
       {/* Ambient glowing blobs */}
       <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[90px] pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/4 translate-y-1/2 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[110px] pointer-events-none" />

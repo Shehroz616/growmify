@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, Check, Copy, ArrowLeft, Clock } from 'lucide-react';
 import TiltedCard from '../components/TiltedCard';
 import useInquiryStore from '../store/useInquiryStore';
+import SEO from '../components/SEO';
 
 const PROJECT_TYPES = ['AI & Automation', 'High Performance Web', 'UI Design', 'Consulting', 'Other'];
 
@@ -83,8 +84,23 @@ export default function Contact() {
     );
   }, []);
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Growmify",
+    "description": "Get in touch with Growmify's software development experts. Let's discuss your next project, integration, or digital product transformation.",
+    "url": "https://growmify.com/contact"
+  };
+
   return (
     <section className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="Contact Us - Start Your Project"
+        description="Get in touch with Growmify's software development experts. Let's discuss your next project, integration, or digital product transformation."
+        keywords="contact growmify, hire developers, AI consultation, software agency contact, outsource developers"
+        canonical="https://growmify.com/contact"
+        schema={contactSchema}
+      />
       {/* Background glow highlights */}
       <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[350px] h-[350px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />

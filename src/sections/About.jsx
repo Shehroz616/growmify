@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Zap, Shield, Target, Compass, Sparkles, Users, Award } from 'lucide-react';
 import SpotlightCard from '../components/SpotlightCard';
 import Lightfall from '../components/Lightfall';
+import SEO from '../components/SEO';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -96,6 +97,12 @@ export default function About() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="About Us - Our Mission & Vision"
+        description="Learn about Growmify, a team of passionate engineers and designers transforming business vision into high-scale software solutions and immersive products."
+        keywords="about growmify, growmify team, software agency, software company mission, premium developers"
+        canonical="https://growmify.com/about"
+      />
       {/* Dynamic particles background */}
 
 

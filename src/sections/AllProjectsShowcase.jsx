@@ -7,6 +7,7 @@ import { ArrowLeft, ExternalLink, X, Zap, Shield, CheckCircle, Cpu } from 'lucid
 import { Link } from 'react-router-dom';
 import TiltedCard from '../components/TiltedCard';
 import useProjectStore from '../store/useProjectStore';
+import SEO from '../components/SEO';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -55,6 +56,12 @@ export default function AllProjectsShowcase() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="Our Portfolio - Custom Software & AI Projects"
+        description="Browse the Growmify gallery of case studies. View our custom integrations, high-performance web applications, and responsive creative layouts."
+        keywords="growmify portfolio, growmify case studies, react projects, AI web applications showcase"
+        canonical="https://growmify.com/showcase"
+      />
       <div className="relative max-w-7xl mx-auto z-10">
         {/* Navigation & Header */}
         <div className="flex flex-col gap-6 mb-16">

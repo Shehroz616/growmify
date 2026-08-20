@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Shield, Eye, Lock } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Privacy() {
   const containerRef = useRef(null);
@@ -16,6 +17,12 @@ export default function Privacy() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="Privacy Policy"
+        description="Read Growmify's Privacy Policy to understand how we collect, protect, and handle your data when using our website and custom software solutions."
+        keywords="privacy policy, data protection, growmify privacy"
+        canonical="https://growmify.com/privacy"
+      />
       {/* Background glow highlights */}
       <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[350px] h-[350px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[350px] h-[350px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />

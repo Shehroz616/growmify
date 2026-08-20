@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, Calendar, Share2, CheckCircle2, ArrowRight } from 'lu
 import * as Icons from 'lucide-react';
 import useBlogStore from '../store/useBlogStore';
 import SpotlightCard from '../components/SpotlightCard';
+import SEO from '../components/SEO';
 
 export default function BlogDetails() {
   const { id } = useParams();
@@ -69,8 +70,51 @@ export default function BlogDetails() {
 
   const IconComponent = Icons[post.iconName] || Icons.BookOpen;
 
+  // Build schema
+  let publishedDate = post.date;
+  try {
+    if (post.date) {
+      const parsed = new Date(post.date);
+      if (!isNaN(parsed.getTime())) {
+        publishedDate = parsed.toISOString().split('T')[0];
+      }
+    }
+  } catch (e) {
+    // Keep original
+  }
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "image": post.image?.startsWith('http') ? post.image : `${window.location.origin}${post.image}`,
+    "author": {
+      "@type": "Person",
+      "name": post.author || 'Growmify Team'
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Growmify",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${window.location.origin}/logo-growmify.png`
+      }
+    },
+    "datePublished": publishedDate,
+    "description": post.summary
+  };
+
   return (
     <section className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title={post.title}
+        description={post.summary}
+        keywords={`growmify blog, ${post.category?.toLowerCase() || 'engineering'}, ${post.tag?.toLowerCase() || 'tech'}`}
+        canonical={`https://growmify.com/blog/${post.id || post._id}`}
+        ogType="article"
+        ogImage={post.image}
+        schema={blogSchema}
+      />
       {/* Background glow highlights */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/2 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/2 blur-[120px] pointer-events-none" />

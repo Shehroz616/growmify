@@ -7,6 +7,7 @@ import * as Icons from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SpotlightCard from '../components/SpotlightCard';
 import useBlogStore from '../store/useBlogStore';
+import SEO from '../components/SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +45,12 @@ export default function AllBlogs() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-24 px-6 lg:px-16 overflow-hidden">
+      <SEO
+        title="Insights & Engineering Blog"
+        description="Read technical insights, engineering deep dives, UX design patterns, and low-latency system integration guides from the Growmify development team."
+        keywords="growmify blog, software engineering blog, system integration, react optimization tutorials"
+        canonical="https://growmify.com/blogs"
+      />
       {/* Background glow highlights */}
       <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[350px] h-[350px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
