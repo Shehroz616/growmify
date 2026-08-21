@@ -10,9 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@analytics/google-analytics": "^1.1.0",
     "@gsap/react": "^2.1.2",
-    "@intercom/messenger-js-sdk": "^0.0.20",
     "@radix-ui/react-slot": "^1.3.0",
+    "analytics": "^0.8.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",

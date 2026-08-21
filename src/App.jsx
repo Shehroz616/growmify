@@ -8,7 +8,7 @@ import useAppStore from './store/useAppStore';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Footer from './sections/Footer';
-import { Intercom } from "@intercom/messenger-js-sdk";
+import AnalyticsTracker from "./AnalyticsTracker";
 
 // Lazy load page sections for performance/code-splitting
 const Home = lazy(() => import('./sections/Home'));
@@ -54,12 +54,6 @@ export default function App() {
   const location = useLocation();
   const lenisRef = useRef(null);
   const isAdminPath = location.pathname.startsWith('/admin');
-
-  useEffect(() => {
-    Intercom({
-      app_id: 'qfat9rh3',
-    });
-  }, []);
 
   useEffect(() => {
     if (!isLoaded || isAdminPath) return;
@@ -112,6 +106,8 @@ export default function App() {
               <p className="text-text-muted font-jakarta text-xs uppercase tracking-widest">Loading Page...</p>
             </div>
           }>
+
+            <AnalyticsTracker />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
