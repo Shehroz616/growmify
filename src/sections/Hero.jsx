@@ -70,7 +70,7 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center justify-center pt-24 px-8 z-10 overflow-hidden"
     >
-      <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
+      <div className="hidden md:block" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
         <Lightfall
           colors={['#4ae176', '#4fdbc8', '#84dc54']}
           backgroundColor="#00000000"

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import CardSwap, { Card } from '../components/CardSwap';
 import useProjectStore from '../store/useProjectStore';
+import DepthCarousel from '../components/DepthCarousel';
+
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -25,6 +27,18 @@ export default function Showcase() {
       ...project,
       description: project.featuredDescription || project.description,
     }));
+
+
+  const items = SHOWCASE_PROJECTS.map((project) => ({
+    image: project.image,
+    alt: project.title,
+    title: project.title,
+    category: project.category || 'Live Project',
+    description: project.description,
+    link: project.link || '/showcase',
+    ctaText: 'View Project',
+  }));
+
 
   useGSAP(() => {
     gsap.fromTo(
@@ -84,7 +98,7 @@ export default function Showcase() {
         </div>
 
         {/* Right Side: CardSwap 3D Perspective Stacked Cards */}
-        <div className="lg:col-span-6 relative w-full h-[400px] sm:h-[460px] lg:h-[500px] flex items-center justify-center overflow-visible">
+        <div className="hidden md:block lg:col-span-6 relative w-full h-[400px] sm:h-[460px] lg:h-[500px] flex items-center justify-center overflow-visible">
           <CardSwap
             width={480}
             height={320}
@@ -146,6 +160,32 @@ export default function Showcase() {
               </Card>
             ))}
           </CardSwap>
+        </div>
+        <div className="md:hidden">
+          <div style={{ height: '440px', position: 'relative' }}>
+            <DepthCarousel
+              items={items}
+              depth={180}
+              spread={75}
+              tilt={18}
+              tiltDirection="right"
+              perspective={1200}
+              visibleCards={4}
+              falloff={0.2}
+              blur={4}
+              autoplay={true}
+              loop
+              cardWidth={280}
+              cardHeight={360}
+              radius={16}
+              tint="#05060a"
+              duration={700}
+              ease="power3.out"
+              autoplayDelay={3500}
+              showControls
+              showIndicators
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -66,7 +66,7 @@ export default function Preloader() {
       >
         <SplitText
           text="Growmify"
-          className="text-8xl font-semibold text-center"
+          className="text-4xl sm:text-6xl md:text-8xl font-semibold text-center"
           delay={0.05}
           duration={1.5}
           ease="power3.out"
@@ -78,7 +78,7 @@ export default function Preloader() {
       </div>
 
       {/* Progress bar */}
-      <div className="w-64 md:w-96 h-[1px] bg-white/10 rounded-full overflow-hidden">
+      <div className="w-48 sm:w-64 md:w-96 h-[1px] bg-white/10 rounded-full overflow-hidden">
         <div
           ref={progressRef}
           className="h-full bg-primary rounded-full"
@@ -95,7 +95,7 @@ export default function Preloader() {
       </span>
 
       {/* Tag line */}
-      <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20">
+      <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.3em] text-white/20 text-center px-4">
         Devouring Details in Growth
       </p>
     </div>

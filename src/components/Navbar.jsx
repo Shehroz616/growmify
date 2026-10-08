@@ -140,19 +140,19 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-1.5 w-5">
               <motion.span
-                animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="h-0.5 w-full bg-on-surface rounded-full block origin-center"
+                className="h-0.5 w-full bg-white rounded-full block origin-center"
               />
               <motion.span
                 animate={isMobileMenuOpen ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
-                className="h-0.5 w-full bg-on-surface rounded-full block origin-center"
+                className="h-0.5 w-full bg-white rounded-full block origin-center"
               />
               <motion.span
-                animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="h-0.5 w-full bg-on-surface rounded-full block origin-center"
+                className="h-0.5 w-full bg-white rounded-full block origin-center"
               />
             </div>
           </button>
